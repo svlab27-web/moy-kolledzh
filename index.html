@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI-тьютор для колледжа в Telegram — данные студентов в Казахстане</title>
+<meta name="description" content="Учебное приложение для вашего колледжа в Telegram: задачи по вашей программе, подсказки без готовых ответов, кабинет преподавателя. Данные студентов хранятся в Казахстане.">
+<meta property="og:title" content="AI-тьютор для колледжа — в Telegram, по вашей программе, данные в Казахстане">
+<meta property="og:description" content="Не «GPT-бот для группы», а учебный сервис колледжа: подсказки вместо готовых ответов, кабинет преподавателя, РУС / ҚАЗ, серверы в РК.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#14261f;--muted:#5f7068;--green:#1f5e49;--green-2:#2b7a5f;--lime:#dcee8c;--bg:#f6f7f2;--card:#fff;--line:#dfe5dc;--soft:#eef2e7;--red:#b4492a;--red-bg:#fbeee8;--shadow:0 10px 30px #14261f14}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--ink:#e6ece8;--muted:#a3b2aa;--green:#5fae8a;--green-2:#79c39f;--lime:#cfe27a;--bg:#0f1512;--card:#18211d;--line:#2a3631;--soft:#1f2a25;--red:#f0a184;--red-bg:#33201a;--shadow:0 10px 30px #00000055}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}img{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:14px 22px;font-weight:700;text-decoration:none;font-size:16px;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-main{background:var(--lime);color:#1d3a2c;box-shadow:0 6px 18px #b9cf5a55}
+.btn-ghost{border:1.5px solid currentColor}
+.eyebrow{font-size:13px;letter-spacing:1.6px;text-transform:uppercase;font-weight:800;color:var(--green)}
+h1,h2,h3{letter-spacing:-.02em;line-height:1.15;margin:0}
+h2{font-size:clamp(28px,4vw,42px);margin:10px 0 14px}
+.lead{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:720px}
+section{padding:84px 0}
+.center{text-align:center}.center .lead{margin:0 auto}
+
+/* Шапка */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;text-decoration:none}
+.mark{width:34px;height:34px;border-radius:10px;background:var(--green);color:var(--lime);display:grid;place-items:center;font-size:20px}
+.top nav{margin-left:auto;display:flex;gap:22px;font-size:15px;color:var(--muted)}.top nav a{text-decoration:none}
+.top .btn{padding:9px 16px;font-size:14px}
+@media(max-width:860px){.top nav{display:none}.top .btn{margin-left:auto}}
+
+/* Hero */
+.hero{background:linear-gradient(160deg,#1b5240 0%,#21614c 55%,#2b7a5f 100%);color:#fff;padding:72px 0 88px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero .eyebrow{color:var(--lime)}
+.hero h1{font-size:clamp(34px,5.2vw,58px);margin:14px 0 18px}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero p.sub{font-size:clamp(17px,2vw,20px);color:#d6e5dc;max-width:600px;margin:0 0 28px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn-ghost{color:#fff}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+.chip{font-size:14px;padding:7px 12px;border-radius:20px;background:#ffffff14;border:1px solid #ffffff26;color:#e7f0ea}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.phone{display:none}}
+
+/* Телефон-мокап */
+.phone{justify-self:center;width:300px;border-radius:38px;background:#0d1a14;padding:12px;box-shadow:0 30px 60px #0006;transform:rotate(2deg)}
+.screen{border-radius:28px;background:#f5f6f1;color:#182c29;overflow:hidden;font-size:13px}
+.tgbar{background:#fff;padding:12px 14px;display:flex;justify-content:space-between;font-weight:700;border-bottom:1px solid #e3e8df}
+.tgbar span{color:#6b7c74;font-weight:500}
+.sc{padding:14px}
+.miss{background:#21614c;color:#fff;border-radius:14px;padding:14px}
+.miss small{color:#c9dfaa;letter-spacing:1px;font-weight:700;font-size:10px}
+.miss b{display:block;font-size:16px;margin-top:4px;line-height:1.25}
+.q{background:#fff;border:1px solid #e3e8df;border-radius:14px;padding:12px;margin-top:10px}
+.track{display:flex;gap:4px;margin:6px 0 10px}.track i{height:4px;flex:1;border-radius:3px;background:#e6eae0}.track i.d{background:#347654}.track i.c{background:#afc975}
+.opt{border:1px solid #e3e8df;border-radius:9px;padding:8px 10px;margin-top:6px}.opt.sel{background:#edf4df;border-color:#668b4b}
+.hint{margin-top:10px;background:#edf5e4;color:#355632;border-radius:10px;padding:9px 10px;font-size:12px}
+.hint b{color:#21614c}
+
+/* Блок «проблема» */
+.pain{background:var(--card)}
+.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:36px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
+.pain .card{background:var(--bg);box-shadow:none}
+.card h3{font-size:20px;margin:10px 0 8px}
+.card p{margin:0;color:var(--muted);font-size:16px}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:var(--soft)}
+.ico.red{background:var(--red-bg)}
+.law{font-size:13px;color:var(--red);font-weight:700;margin-top:10px;display:block}
+@media(max-width:760px){.grid4{grid-template-columns:1fr}}
+
+/* Сравнение */
+.cmp{margin-top:36px;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow)}
+.cmp-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;border-top:1px solid var(--line)}
+.cmp-row:first-child{border-top:0;font-weight:800;background:var(--soft)}
+.cmp-row>div{padding:15px 18px;font-size:15px}
+.cmp-row>div:nth-child(2){color:var(--muted)}
+.cmp-row>div:nth-child(3){background:color-mix(in srgb,var(--lime) 18%,transparent);font-weight:600}
+.cmp-row:first-child>div:nth-child(3){background:var(--green);color:#fff}
+.no{color:var(--red);font-weight:800}.yes{color:var(--green);font-weight:800}
+@media(max-width:760px){.cmp-row{grid-template-columns:1fr 1fr}.cmp-row>div:first-child{grid-column:1/-1;background:var(--soft);font-weight:700;padding-bottom:6px}.cmp-row:first-child>div:first-child{display:none}}
+
+/* Как работает */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px}
+.flow{list-style:none;padding:0;margin:16px 0 0;counter-reset:s}
+.flow li{position:relative;padding:0 0 18px 50px;counter-increment:s}
+.flow li::before{content:counter(s);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px}
+.flow b{display:block}
+.flow span{color:var(--muted);font-size:15px}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+
+/* Возможности */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.feat .card h3{font-size:18px}
+@media(max-width:900px){.feat{grid-template-columns:1fr 1fr}}@media(max-width:600px){.feat{grid-template-columns:1fr}}
+
+/* Безопасность */
+.secure{background:#14261f;color:#e6ece8}
+.secure .eyebrow{color:var(--lime)}.secure .lead{color:#a9bab1}
+.secure .card{background:#1b3027;border-color:#2c463a;box-shadow:none}.secure .card p{color:#b7c7be}.secure .ico{background:#26402f}
+.guar{margin-top:30px;border:1.5px solid var(--lime);border-radius:18px;padding:22px 24px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
+.guar .big{font-size:40px}
+.guar b{font-size:20px;display:block;color:#fff}
+.guar span{color:#b7c7be;font-size:15px}
+
+/* Педагогика */
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
+.step{border-radius:16px;padding:18px;background:var(--card);border:1px solid var(--line)}
+.step small{font-weight:800;color:var(--green);letter-spacing:.5px}
+.step p{margin:8px 0 0;font-size:15px;color:var(--muted)}
+.step.no-ans{background:var(--red-bg);border-color:transparent}.step.no-ans small{color:var(--red)}
+@media(max-width:760px){.ladder{grid-template-columns:1fr 1fr}}
+
+/* Пилот */
+.pilot{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.pilot .card{position:relative}
+.pilot .n{font-size:13px;font-weight:800;color:var(--green)}
+@media(max-width:900px){.pilot{grid-template-columns:1fr 1fr}}@media(max-width:560px){.pilot{grid-template-columns:1fr}}
+.reverse{margin-top:22px;padding:18px 22px;border-radius:16px;background:var(--soft);font-size:16px}
+
+/* Демо */
+.demo{background:linear-gradient(160deg,#1b5240,#2b7a5f);color:#fff;border-radius:26px;padding:44px;display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center}
+.demo h2{color:#fff}.demo p{color:#d6e5dc}
+.demo .links{display:grid;gap:12px}
+.demo .links a{display:flex;justify-content:space-between;align-items:center;background:#ffffff14;border:1px solid #ffffff2a;border-radius:14px;padding:14px 18px;text-decoration:none;font-weight:700}
+.demo .links a span{font-weight:500;color:#cfe0d6;font-size:14px}
+@media(max-width:820px){.demo{grid-template-columns:1fr;padding:28px}}
+
+/* FAQ */
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-weight:700;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";color:var(--green);font-size:24px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin:10px 0 0}
+
+/* Финал */
+.final{text-align:center}
+.final .btn{margin:6px}
+footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);font-size:13px}
+footer .wrap{display:flex;gap:20px;justify-content:space-between;flex-wrap:wrap}
+.fine{max-width:760px}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a class="brand" href="#"><span class="mark">↗</span>Мой колледж</a>
+  <nav><a href="#why">Почему не GPT-бот</a><a href="#how">Как работает</a><a href="#safe">Безопасность</a><a href="#pilot">Пилот</a><a href="#faq">Вопросы</a></nav>
+  <a class="btn btn-main" href="#contact">Обсудить пилот</a>
+</div></header>
+
+<!-- 1. Hero: выгода + снятие главного страха -->
+<section class="hero"><div class="wrap">
+  <div>
+    <div class="eyebrow">AI-тьютор для колледжа · в Telegram</div>
+    <h1>Студенты учатся сами. Преподаватель видит, <em>кто застрял</em>. Данные остаются в&nbsp;Казахстане.</h1>
+    <p class="sub">Мы создаём для колледжа собственное учебное приложение: задачи по вашей программе, подсказки вместо готовых ответов и кабинет преподавателя. Открывается прямо в Telegram — ничего не нужно устанавливать.</p>
+    <div class="ctas">
+      <a class="btn btn-main" href="#demo">Посмотреть живое демо →</a>
+      <a class="btn btn-ghost" href="#contact">Обсудить пилот</a>
+    </div>
+    <div class="chips">
+      <span class="chip">🇰🇿 Серверы в РК</span><span class="chip">⚖️ Закон № 94-V</span><span class="chip">РУС / ҚАЗ</span><span class="chip">📱 Без установки</span><span class="chip">👩‍🏫 Утверждает преподаватель</span>
+    </div>
+  </div>
+  <div class="phone" aria-hidden="true"><div class="screen">
+    <div class="tgbar">Мой колледж <span>мини-приложение</span></div>
+    <div class="sc">
+      <div class="miss"><small>PYTHON · ОСНОВЫ</small><b>Почини скидку в студенческом кафе</b></div>
+      <div class="q"><div style="display:flex;justify-content:space-between;font-size:11px;color:#6b7c74"><span>ШАГ 2 ИЗ 4</span><span>1/4 пройдено</span></div>
+        <div class="track"><i class="d"></i><i class="c"></i><i></i><i></i></div>
+        <b>Тысяча — уже со скидкой?</b>
+        <div class="opt">900 ₸ — скидка применится</div>
+        <div class="opt sel">1 000 ₸ — скидки не будет</div>
+        <div class="opt">100 ₸ — останется только скидка</div>
+        <div class="hint"><b>Вопрос:</b> верно ли, что 1000 &gt; 1000?</div>
+      </div>
+    </div>
+  </div></div>
+</div></section>
+
+<!-- 2. Боль: неприятие потерь -->
+<section class="pain" id="why"><div class="wrap">
+  <div class="eyebrow">Почему не «GPT-бот для группы»</div>
+  <h2>Педагогам советуют завести чат-бота в ChatGPT. Вот что при этом теряет колледж</h2>
+  <p class="lead">Публичный чат-бот удобен для одного преподавателя. Но как только туда приходят студенты, ответственность за их данные и за качество обучения ложится на колледж.</p>
+  <div class="grid4">
+    <div class="card"><div class="ico red">⚠️</div><h3>Данные студентов уходят за рубеж</h3>
+      <p>Всё, что студент пишет публичному чат-боту — имя, ответы, вопросы, — обрабатывается на серверах за пределами Казахстана. Закон требует хранить базы персональных данных граждан РК в Казахстане и получать согласие на их обработку.</p>
+      <span class="law">Закон РК № 94-V, ст. 12 — локализация баз данных</span></div>
+    <div class="card"><div class="ico red">🔞</div><h3>Несовершеннолетние — отдельный риск</h3>
+      <p>Студентам колледжа часто 15–17 лет. Условия ChatGPT требуют для пользователей младше 18 разрешения родителей, а колледж не может проконтролировать, как и на чьём аккаунте студент работает.</p>
+      <span class="law">Согласие законного представителя на обработку данных</span></div>
+    <div class="card"><div class="ico red">📋</div><h3>Готовые ответы вместо обучения</h3>
+      <p>Универсальный бот решает задачу за студента за секунды. Домашняя работа сдана — навыка нет. Преподаватель не может это ни проверить, ни запретить.</p></div>
+    <div class="card"><div class="ico red">🙈</div><h3>Преподаватель ничего не видит</h3>
+      <p>Кто занимался, кто застрял на третьей теме, какая тема провалилась у всей группы — в чужом чат-боте этого нет. Нет отчётов, нет выгрузки, нет контроля.</p></div>
+  </div>
+</div></section>
+
+<!-- 3. Контраст / якорение -->
+<section><div class="wrap">
+  <div class="center"><div class="eyebrow">Сравнение</div><h2>Чат-бот в ChatGPT и учебное приложение колледжа</h2></div>
+  <div class="cmp" role="table" aria-label="Сравнение">
+    <div class="cmp-row" role="row"><div>Что важно колледжу</div><div>GPT-бот / канал</div><div>«Мой колледж»</div></div>
+    <div class="cmp-row" role="row"><div>Где хранятся данные студентов</div><div><span class="no">✕</span> За пределами РК</div><div><span class="yes">✓</span> На серверах в Казахстане</div></div>
+    <div class="cmp-row" role="row"><div>Согласие на обработку данных, в т.ч. родителей</div><div><span class="no">✕</span> Нет</div><div><span class="yes">✓</span> Встроено: 18+ и для родителей</div></div>
+    <div class="cmp-row" role="row"><div>По чьей программе учит</div><div>По «всему интернету»</div><div><span class="yes">✓</span> По вашему КТП и материалам</div></div>
+    <div class="cmp-row" role="row"><div>Готовые ответы</div><div><span class="no">✕</span> Даёт сразу</div><div><span class="yes">✓</span> Подсказки ступенями, ответ — никогда</div></div>
+    <div class="cmp-row" role="row"><div>Кто проверяет задания</div><div><span class="no">✕</span> Никто</div><div><span class="yes">✓</span> Каждое утверждает преподаватель</div></div>
+    <div class="cmp-row" role="row"><div>Прогресс группы, «кто застрял»</div><div><span class="no">✕</span> Не видно</div><div><span class="yes">✓</span> Кабинет преподавателя + Excel</div></div>
+    <div class="cmp-row" role="row"><div>Казахский язык</div><div>Как получится</div><div><span class="yes">✓</span> Интерфейс и уроки РУС / ҚАЗ</div></div>
+    <div class="cmp-row" role="row"><div>Что нужно студенту</div><div>Аккаунт, подписка, возраст 13+</div><div><span class="yes">✓</span> Только Telegram и ссылка от преподавателя</div></div>
+  </div>
+</div></section>
+
+<!-- 4. Как работает: простота, низкий порог -->
+<section id="how" style="background:var(--card)"><div class="wrap">
+  <div class="eyebrow">Как это работает</div>
+  <h2>Три шага для преподавателя. Ноль установок для студента</h2>
+  <div class="two">
+    <div class="card"><h3>👩‍🏫 Преподаватель</h3><ol class="flow">
+      <li><b>Загружает свой план занятий</b><span>КТП в Word, Excel или PDF. AI готовит черновики задач по каждой теме — преподаватель утверждает.</span></li>
+      <li><b>Создаёт группу и отправляет ссылку</b><span>Кнопкой «Поделиться в Telegram» в чат группы или QR-кодом на экране в аудитории.</span></li>
+      <li><b>Видит прогресс</b><span>Кто занимался, кто застрял, какие темы слабые у группы. Назначает задания со сроком, отвечает на «нужна помощь».</span></li>
+    </ol></div>
+    <div class="card"><h3>🎓 Студент</h3><ol class="flow">
+      <li><b>Открывает ссылку в Telegram</b><span>Без регистрации, паролей и установки. Работает на любом телефоне.</span></li>
+      <li><b>Решает задачу из жизни за 10 минут</b><span>Касса в кафе, двор у дома, деталь на чертеже. Четыре коротких шага, тренажёры, подсказки по запросу.</span></li>
+      <li><b>Проверяет себя без подсказок</b><span>Новая задача в новой ситуации — навык, а не выученный ответ.</span></li>
+    </ol></div>
+  </div>
+</div></section>
+
+<!-- 5. Возможности -->
+<section><div class="wrap">
+  <div class="eyebrow">Что внутри</div>
+  <h2>Всё, что нужно для учебного процесса — уже в приложении</h2>
+  <div class="feat">
+    <div class="card"><div class="ico">🧩</div><h3>Задачи из жизни</h3><p>Каждый урок — короткая «миссия» по специальности студента, а не абстрактное упражнение.</p></div>
+    <div class="card"><div class="ico">🪜</div><h3>Лестница подсказок</h3><p>Намёк → наводящий вопрос → похожий пример. Студент думает сам, тьютор только направляет.</p></div>
+    <div class="card"><div class="ico">🎛️</div><h3>Интерактивные тренажёры</h3><p>Ползунки, «кассы», измерители, диалоги с клиентом — практика, которую не даст ни учебник, ни чат.</p></div>
+    <div class="card"><div class="ico">📊</div><h3>Кабинет преподавателя</h3><p>Прогресс группы, «кто застрял», слабые темы, задания со сроками, обращения студентов, выгрузка в Excel.</p></div>
+    <div class="card"><div class="ico">🗓️</div><h3>По вашему плану</h3><p>Темы и порядок — из вашего КТП. Сервис подстраивается под программу, а не наоборот.</p></div>
+    <div class="card"><div class="ico">🌗</div><h3>Удобно каждый день</h3><p>РУС / ҚАЗ, светлая и тёмная тема, работает на любом смартфоне прямо в Telegram.</p></div>
+  </div>
+</div></section>
+
+<!-- 6. Безопасность и право: авторитет + гарантия -->
+<section class="secure" id="safe"><div class="wrap">
+  <div class="eyebrow">Безопасность и закон</div>
+  <h2 style="color:#fff">Колледж отвечает за данные студентов. Мы берём эту ответственность на себя по договору</h2>
+  <p class="lead">Приложение с самого начала спроектировано под требования законодательства Республики Казахстан о персональных данных.</p>
+  <div class="grid4">
+    <div class="card"><div class="ico">🇰🇿</div><h3 style="color:#fff">Серверы в Казахстане</h3><p>Продакшен и база данных — в казахстанском дата-центре. Резервные копии — тоже в РК. Данные студентов не покидают страну.</p></div>
+    <div class="card"><div class="ico">✍️</div><h3 style="color:#fff">Согласия — до первого урока</h3><p>Студент 18+ подтверждает согласие в приложении. Для несовершеннолетних — согласие родителя, которое вносит преподаватель.</p></div>
+    <div class="card"><div class="ico">🤖</div><h3 style="color:#fff">AI без личных данных</h3><p>В языковую модель уходит только текст вопроса и учебный материал. Никаких ФИО, Telegram ID и оценок.</p></div>
+    <div class="card"><div class="ico">🔐</div><h3 style="color:#fff">Доступ только по роли</h3><p>Студент видит свои результаты, преподаватель — только свою группу. Вход по приглашению колледжа, HTTPS, журнал действий, удаление данных по сроку и по запросу.</p></div>
+  </div>
+  <div class="guar"><div class="big">🛡️</div><div><b>Гарантия в договоре: данные ваших студентов хранятся в Казахстане</b><span>Фиксируем место хранения, сроки, порядок удаления и ответственность в договоре на обработку персональных данных с колледжем.</span></div></div>
+</div></section>
+
+<!-- 7. Педагогика -->
+<section><div class="wrap">
+  <div class="center"><div class="eyebrow">Педагогика</div><h2>AI здесь — тьютор, а не решебник</h2><p class="lead">Помощь выдаётся ступенями. Освоение подтверждает только задача, решённая студентом самостоятельно.</p></div>
+  <div class="ladder">
+    <div class="step"><small>1 · НАМЁК</small><p>«Скидка зависит только от одного числа в чеке».</p></div>
+    <div class="step"><small>2 · ВОПРОС</small><p>«Верно ли, что 1000 &gt; 1000?»</p></div>
+    <div class="step"><small>3 · ПРИМЕР</small><p>«“С 18 лет” в коде пишут age &gt;= 18».</p></div>
+    <div class="step no-ans"><small>✕ ГОТОВЫЙ ОТВЕТ</small><p>Никогда. Решение — за студентом. Затем — новая задача без подсказок.</p></div>
+  </div>
+</div></section>
+
+<!-- 8. Пилот: маленький первый шаг + снятие риска -->
+<section id="pilot" style="background:var(--card)"><div class="wrap">
+  <div class="eyebrow">Как начать</div>
+  <h2>Начинаем с одной группы. Решение — по результатам</h2>
+  <div class="pilot">
+    <div class="card"><span class="n">ШАГ 1 · 30 МИНУТ</span><h3>Показ</h3><p>Проходим урок глазами студента и кабинет глазами преподавателя — на ваших телефонах.</p></div>
+    <div class="card"><span class="n">ШАГ 2 · 1 НЕДЕЛЯ</span><h3>Техническое задание</h3><p>Анкета колледжа и карточки дисциплин: группы, программа, материалы, расписание.</p></div>
+    <div class="card"><span class="n">ШАГ 3 · 4–6 НЕДЕЛЬ</span><h3>Пилот</h3><p>1–2 группы, ваши темы. AI готовит задачи, преподаватель утверждает, мы сопровождаем.</p></div>
+    <div class="card"><span class="n">ШАГ 4</span><h3>Решение</h3><p>Смотрим цифры: кто решает новые задачи сам, сколько тем пройдено, сколько времени сэкономил преподаватель.</p></div>
+  </div>
+  <div class="reverse">✅ <b>Без долгосрочных обязательств.</b> Расширяем на другие группы и дисциплины, только если пилот показал результат.</div>
+</div></section>
+
+<!-- 9. Демо: доказательство вместо обещаний -->
+<section id="demo"><div class="wrap">
+  <div class="demo">
+    <div><div class="eyebrow" style="color:var(--lime)">Живое демо</div><h2>Не верьте на слово — откройте у себя в телефоне</h2><p>Рабочий прототип: четыре дисциплины, русский и казахский, кабинет преподавателя с демо-группами. Пять минут — и вы поймёте, как это будет у вас.</p></div>
+    <div class="links">
+      <a href="https://t.me/tutornvl_bot?startapp=student">🎓 Глазами студента <span>Telegram →</span></a>
+      <a href="https://t.me/tutornvl_bot?startapp=teacher">👩‍🏫 Глазами преподавателя <span>Telegram →</span></a>
+      <a href="https://college-tutor.vercel.app/about.html">💻 Открыть в браузере <span>сайт →</span></a>
+    </div>
+  </div>
+</div></section>
+
+<!-- 10. FAQ: снятие возражений -->
+<section id="faq" style="padding-top:20px"><div class="wrap" style="max-width:860px">
+  <div class="eyebrow">Вопросы</div><h2>Частые вопросы</h2>
+  <details><summary>Нужно ли что-то устанавливать студентам и преподавателям?</summary><p>Нет. Приложение открывается внутри Telegram на любом телефоне и в браузере на компьютере. Студенту нужна только ссылка от преподавателя.</p></details>
+  <details><summary>Чем это лучше бесплатного бота в ChatGPT?</summary><p>Данные студентов хранятся в Казахстане и обрабатываются с согласия; задания — по вашей программе и утверждены преподавателем; AI не выдаёт готовых ответов; преподаватель видит прогресс группы. Публичный чат-бот ничего из этого не обеспечивает.</p></details>
+  <details><summary>Кто готовит задания? У преподавателей нет времени.</summary><p>AI готовит черновики задач по вашему плану занятий, преподаватель только проверяет и утверждает. Студенты видят лишь утверждённые задания.</p></details>
+  <details><summary>Есть ли казахский язык?</summary><p>Да: интерфейс и уроки на русском и казахском. Студент выбирает язык сам, по умолчанию — язык его Telegram.</p></details>
+  <details><summary>А если AI ошибётся?</summary><p>Тьютор отвечает только по утверждённым материалам урока. Если ответа в материалах нет — предлагает обратиться к преподавателю, а вопрос попадает в кабинет как «нужна помощь».</p></details>
+  <details><summary>Где хранятся данные и кто к ним имеет доступ?</summary><p>На серверах в казахстанском дата-центре. Студент видит свои результаты, преподаватель — только свою группу. Место хранения, сроки и удаление фиксируются в договоре с колледжем.</p></details>
+  <details><summary>Можно ли под наши специальности?</summary><p>Да — это и есть суть: темы, задачи и примеры строятся по вашим дисциплинам и программе. Для этого есть короткое техническое задание.</p></details>
+  <details><summary>Сколько это стоит?</summary><p>Зависит от числа групп и дисциплин. После показа и технического задания готовим предложение на пилот и на расширение.</p></details>
+</div></section>
+
+<!-- 11. Финальный призыв -->
+<section class="final" id="contact" style="background:var(--card)"><div class="wrap">
+  <div class="eyebrow">Следующий шаг</div>
+  <h2>Покажем приложение за 30 минут — на телефонах вашей команды</h2>
+  <p class="lead" style="margin:0 auto 26px">Ответим на вопросы по закону и безопасности, разберём, как это ляжет на ваши дисциплины, и предложим формат пилота.</p>
+  <a class="btn btn-main" href="#CONTACT_LINK">Записаться на показ →</a>
+  <a class="btn btn-ghost" href="#demo" style="color:var(--green)">Сначала посмотреть демо</a>
+</div></section>
+
+<footer><div class="wrap">
+  <div><b>Мой колледж</b> — учебные приложения для колледжей в Telegram<br>ТОО «Neurovia Labs», Казахстан</div>
+  <div class="fine">ChatGPT — товарный знак OpenAI; сравнение приведено для информации. Сведения о требованиях законодательства РК даны в общем виде и не являются юридической консультацией: условия хранения и обработки данных фиксируются в договоре с колледжем.</div>
+</div></footer>
+</body>
+</html>
