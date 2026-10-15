@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Мой колледж — AI-тьютор для колледжа</title>
+<meta name="description" content="Учебное приложение колледжа в Telegram: задачи по вашей программе, подсказки вместо готовых ответов, кабинет преподавателя и куратора. Данные студентов — в Казахстане.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f4ee;--paper:#fffdf9;--ink:#17231d;--muted:#5d6b63;--line:#e6e0d4;--green:#1f5e49;--green-2:#2f7d61;--lime:#dbee86;--sand:#efe7d8;--red:#b4492a;--shadow:0 20px 50px #17231d14}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Manrope,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}img{max-width:100%;display:block}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.serif{font-family:"Playfair Display",Georgia,serif;font-weight:500;letter-spacing:-.01em}
+h1,h2,h3{margin:0;line-height:1.08}
+h2{font-family:"Playfair Display",Georgia,serif;font-weight:500;font-size:clamp(32px,4.4vw,58px);letter-spacing:-.015em}
+h2 em,h1 em{font-style:italic;color:var(--green-2)}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-2)}
+.kicker::before{content:"";width:28px;height:1.5px;background:currentColor}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--muted);max-width:620px}
+section{padding:110px 0}
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:15px 26px;font-weight:700;font-size:16px;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s;border:0;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:#fff;box-shadow:0 10px 24px #17231d33}.btn-dark:hover{background:var(--green)}
+.btn-line{border:1.5px solid var(--ink);color:var(--ink);background:transparent}
+.btn .arr{transition:transform .2s}.btn:hover .arr{transform:translateX(4px)}
+/* Шапка */
+.top{position:sticky;top:0;z-index:30;transition:background .3s,box-shadow .3s}
+.top.s{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.top .wrap{display:flex;align-items:center;height:76px;gap:28px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;text-decoration:none}
+.logo i{width:36px;height:36px;border-radius:11px;background:var(--green);color:var(--lime);display:grid;place-items:center;font-style:normal;font-size:20px}
+.top nav{display:flex;gap:28px;margin-left:auto;font-size:15px;font-weight:600;color:var(--muted)}.top nav a{text-decoration:none}.top nav a:hover{color:var(--ink)}
+.top .btn{padding:11px 20px;font-size:14px}
+@media(max-width:900px){.top nav{display:none}.top .btn{margin-left:auto}}
+/* Hero */
+.hero{padding:40px 0 90px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero h1{font-family:"Playfair Display",Georgia,serif;font-weight:500;font-size:clamp(40px,5.6vw,78px);letter-spacing:-.02em;margin:22px 0 24px}
+.hero .lead{margin-bottom:34px}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.proof{display:flex;gap:26px;margin-top:44px;flex-wrap:wrap}
+.proof div{font-size:14px;color:var(--muted);max-width:150px}.proof b{display:block;font-family:"Playfair Display",serif;font-size:34px;font-weight:500;color:var(--ink);line-height:1.1}
+.hero-media{position:relative}
+.hero-photo{border-radius:28px;overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow);transform:translateY(var(--py,0))}
+.hero-photo img{width:100%;height:110%;object-fit:cover;object-position:35% center}
+.glass{position:absolute;background:color-mix(in srgb,#fff 82%,transparent);backdrop-filter:blur(14px);border:1px solid #ffffffaa;border-radius:18px;box-shadow:0 18px 40px #17231d26;padding:14px 16px;font-size:14px}
+.g1{left:-34px;bottom:70px;width:250px;animation:bob 6s ease-in-out infinite}
+.g2{right:-22px;top:46px;animation:bob 7s ease-in-out infinite reverse}
+.g1 small,.g2 small{display:block;color:var(--muted);font-size:12px}
+.g1 .bar{height:7px;border-radius:5px;background:#e9ece6;margin-top:8px;overflow:hidden}.g1 .bar i{display:block;height:100%;width:72%;background:var(--green-2);border-radius:5px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#e2683c;margin-right:6px;box-shadow:0 0 0 4px #e2683c33}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@media(max-width:960px){.hero .wrap{grid-template-columns:1fr}}
+/* Лента */
+.strip{border-block:1px solid var(--line);padding:22px 0;background:var(--paper)}
+.strip .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-weight:700;font-size:15px;color:var(--muted)}
+.strip span{display:flex;align-items:center;gap:10px}.strip svg{width:20px;height:20px;color:var(--green-2)}
+/* Почему */
+.why .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px}
+.quote{font-family:"Playfair Display",serif;font-size:clamp(26px,2.8vw,36px);line-height:1.3;position:sticky;top:120px;align-self:start}
+.quote small{display:block;font-family:Manrope,sans-serif;font-size:14px;color:var(--muted);margin-top:18px}
+.pts{border-top:1px solid var(--line)}
+.pt{display:grid;grid-template-columns:60px 1fr;gap:10px;padding:28px 0;border-bottom:1px solid var(--line)}
+.pt .n{font-family:"Playfair Display",serif;font-size:28px;color:var(--red)}
+.pt h3{font-size:22px;margin-bottom:8px}.pt p{margin:0;color:var(--muted)}
+.pt .law{display:inline-block;margin-top:10px;font-size:13px;font-weight:700;color:var(--red)}
+@media(max-width:900px){.why .wrap{grid-template-columns:1fr;gap:30px}.quote{position:static}}
+/* Роли */
+.roles{background:var(--paper)}
+.tabs{display:flex;gap:8px;margin:34px 0 30px;flex-wrap:wrap}
+.tabs button{border:1.5px solid var(--line);background:transparent;border-radius:999px;padding:11px 20px;font:inherit;font-weight:700;font-size:15px;color:var(--muted);cursor:pointer;transition:all .2s}
+.tabs button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.role{display:none;grid-template-columns:1fr 1fr;gap:56px;align-items:center}.role.on{display:grid;animation:fade .6s ease}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.role .ph{border-radius:24px;overflow:hidden;aspect-ratio:5/4;box-shadow:var(--shadow)}.role .ph img{width:100%;height:100%;object-fit:cover}
+.role h3{font-family:"Playfair Display",serif;font-weight:500;font-size:clamp(28px,3vw,40px);margin-bottom:18px}
+.role ul{list-style:none;padding:0;margin:0}
+.role li{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.role li::before{content:"";width:22px;height:22px;border-radius:50%;margin-top:3px;background:var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.2l3 3 6-6.4' stroke='%231f5e49' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/13px no-repeat}
+.role li b{display:block}.role li span{color:var(--muted);font-size:15px}
+@media(max-width:900px){.role.on{grid-template-columns:1fr;gap:28px}}
+/* Урок */
+.try .wrap{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.ladder{margin-top:30px;display:grid;gap:10px}
+.lad{display:flex;gap:16px;align-items:center;padding:16px 18px;border-radius:16px;background:var(--paper);border:1px solid var(--line);opacity:.45;transition:all .5s}
+.lad.on{opacity:1;border-color:var(--green-2);box-shadow:0 10px 26px #1f5e4918;transform:translateX(6px)}
+.lad b{font-family:"Playfair Display",serif;font-size:24px;color:var(--green-2);width:30px}
+.lad.no b{color:var(--red)}.lad.no.on{border-color:var(--red)}
+.lad small{display:block;font-weight:700;font-size:12px;letter-spacing:.08em;color:var(--muted)}
+@media(max-width:900px){.try .wrap{grid-template-columns:1fr;gap:40px}}
+.phone{width:320px;margin:0 auto;border-radius:44px;background:#121a16;padding:12px;box-shadow:0 40px 80px #17231d40,inset 0 0 0 2px #2a352f}
+.screen{border-radius:34px;background:#f5f6f1;overflow:hidden;font-size:14px;color:#182c29}
+.tgbar{display:flex;justify-content:space-between;align-items:center;padding:16px 18px 12px;background:#fff;font-weight:800;border-bottom:1px solid #e6eae2}.tgbar span{font-weight:500;color:#7b8a82;font-size:12px}
+.sc{padding:14px}
+.miss{background:var(--green);color:#fff;border-radius:16px;padding:14px 16px}.miss small{color:var(--lime);font-size:10px;font-weight:800;letter-spacing:.12em}.miss b{display:block;font-size:17px;margin-top:4px;line-height:1.25}
+.q{background:#fff;border:1px solid #e6eae2;border-radius:16px;padding:14px;margin-top:10px;min-height:330px}
+.meta{display:flex;justify-content:space-between;font-size:11px;color:#7b8a82;font-weight:700}
+.track{display:flex;gap:4px;margin:8px 0 12px}.track i{flex:1;height:4px;border-radius:3px;background:#e6eae0;transition:background .4s}.track i.d{background:#2f7d61}.track i.c{background:#b9d27a}
+.code{font:12px ui-monospace,Menlo,monospace;background:#17231d;color:var(--lime);border-radius:10px;padding:9px 11px;margin:8px 0 6px}
+.opt{display:block;width:100%;text-align:left;border:1px solid #e3e8df;border-radius:11px;padding:10px 12px;margin-top:7px;background:#fff;font:inherit;font-size:13px;color:inherit;cursor:pointer;transition:all .2s}
+.opt:hover{border-color:#2f7d61}.opt.ok{background:#e4f1d8;border-color:#2f7d61;font-weight:700}.opt.bad{background:#fbeee8;border-color:#d08a6c;animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.chips{display:flex;gap:6px}.chips .opt{text-align:center;font-family:ui-monospace,monospace}
+.fb{min-height:18px;margin-top:8px;font-size:12px;font-weight:700}.fb.g{color:#2b6b45}.fb.b{color:#a4482a}
+.hint{margin-top:8px;background:#edf5e4;color:#355632;border-radius:10px;padding:9px 11px;font-size:12px;animation:fade .35s}
+.hbtn{margin-top:10px;width:100%;border:1px dashed #9fb98a;background:none;border-radius:10px;padding:8px;font:inherit;font-size:12px;font-weight:700;color:var(--green);cursor:pointer}.hbtn:disabled{opacity:.5}
+.done{text-align:center;padding-top:70px}.done .big{font-size:44px}.again{margin-top:12px;border:0;background:var(--green);color:#fff;border-radius:999px;padding:9px 18px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+/* Куратор */
+.cur{background:var(--sand)}
+.cur .wrap{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.cur-media{position:relative}
+.cur-media .ph{border-radius:24px;overflow:hidden;aspect-ratio:4/3}.cur-media img{width:100%;height:100%;object-fit:cover}
+.roster{position:absolute;right:-30px;bottom:-40px;width:330px;background:#fff;border-radius:20px;box-shadow:var(--shadow);padding:16px 18px}
+.roster h4{margin:0 0 6px;font-size:14px}
+.rr{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid #eee;font-size:13px}.rr .nm{flex:1}.rr .nm small{display:block;color:var(--muted);font-size:11px}
+.tag{font-size:11px;font-weight:700;border-radius:6px;padding:3px 8px;white-space:nowrap;transition:all .3s}.t-ok{background:#e4f1d8;color:#2b6b45}.t-w{background:#fbeee8;color:var(--red)}
+.mk{border:0;background:var(--ink);color:#fff;border-radius:8px;padding:6px 10px;font:inherit;font-size:11px;font-weight:700;cursor:pointer}
+.cur ol{counter-reset:c;list-style:none;padding:0;margin:26px 0 0}
+.cur ol li{counter-increment:c;display:grid;grid-template-columns:44px 1fr;gap:6px;padding:14px 0;border-bottom:1px solid #dcd2bf}
+.cur ol li::before{content:counter(c,decimal-leading-zero);font-family:"Playfair Display",serif;font-size:22px;color:var(--green-2)}
+.cur ol b{display:block}.cur ol span{color:var(--muted);font-size:15px}
+@media(max-width:960px){.cur .wrap{grid-template-columns:1fr;gap:80px}.roster{right:12px;bottom:-60px;width:calc(100% - 24px);max-width:340px}}
+/* Данные в РК */
+.kz{position:relative;color:#fff;padding:150px 0;overflow:hidden}
+.kz .bgimg{position:absolute;inset:-10% 0;background:url("https://images.unsplash.com/photo-1645817227685-e97c2f7f1e3e?w=1800&q=70") center/cover;transform:translateY(var(--ky,0))}
+.kz::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0f1c16cc,#0f1c16ee)}
+.kz .wrap{position:relative;z-index:1}.kz .kicker{color:var(--lime)}.kz h2 em{color:var(--lime)}.kz .lead{color:#cfdcd4}
+.kz-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:56px;background:#ffffff26;border-radius:22px;overflow:hidden}
+.kz-grid div{background:#0f1c16b3;backdrop-filter:blur(6px);padding:28px 24px}
+.kz-grid b{display:block;font-family:"Playfair Display",serif;font-weight:500;font-size:24px;margin-bottom:10px;color:#fff}
+.kz-grid p{margin:0;color:#b9c9c0;font-size:15px}
+@media(max-width:900px){.kz-grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.kz-grid{grid-template-columns:1fr}}
+/* Пилот */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:27px;height:1.5px;background:var(--line)}
+.steps .ln{position:absolute;left:0;top:27px;height:1.5px;width:0;background:var(--green-2);transition:width 1.8s ease}
+.st{position:relative;padding-right:24px}
+.st .c{width:56px;height:56px;border-radius:50%;background:var(--paper);border:1.5px solid var(--line);display:grid;place-items:center;font-family:"Playfair Display",serif;font-size:22px;margin-bottom:22px;transition:all .5s}
+.st.on .c{background:var(--green);border-color:var(--green);color:#fff}
+.st small{font-weight:800;font-size:12px;letter-spacing:.1em;color:var(--green-2)}
+.st h3{font-size:22px;margin:6px 0 8px}.st p{margin:0;color:var(--muted);font-size:15px}
+.note{margin-top:46px;padding:22px 26px;border-radius:18px;background:var(--paper);border:1px solid var(--line);font-size:16px}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr;row-gap:40px}.steps::before,.steps .ln{display:none}}@media(max-width:520px){.steps{grid-template-columns:1fr}}
+/* Демо */
+.demo{background:var(--ink);color:#fff;border-radius:32px;padding:64px;display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center;position:relative;overflow:hidden}
+.demo::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,#dbee8640,transparent 65%);right:-120px;top:-160px}
+.demo h2{color:#fff}.demo h2 em{color:var(--lime)}.demo p{color:#b9c9c0}
+.dl{display:grid;gap:12px;position:relative}
+.dl a{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-radius:18px;background:#ffffff0d;border:1px solid #ffffff22;text-decoration:none;font-weight:700;transition:all .25s}
+.dl a:hover{background:#ffffff1a;transform:translateX(6px)}.dl a span{color:var(--lime);font-weight:600;font-size:14px}
+@media(max-width:900px){.demo{grid-template-columns:1fr;padding:36px 26px}}
+/* FAQ */
+.faq .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}
+details{border-bottom:1px solid var(--line);padding:22px 0}
+summary{cursor:pointer;list-style:none;font-weight:700;font-size:18px;display:flex;justify-content:space-between;gap:20px}
+summary::after{content:"+";font-family:"Playfair Display",serif;font-size:26px;line-height:1;color:var(--green-2);transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--muted);margin:12px 0 0;animation:fade .3s}
+@media(max-width:900px){.faq .wrap{grid-template-columns:1fr;gap:20px}}
+/* CTA */
+.cta .box{display:grid;grid-template-columns:1fr 1fr;border-radius:32px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}
+.cta .ph img{width:100%;height:100%;object-fit:cover;min-height:420px}
+.cta .tx{padding:64px 56px;display:flex;flex-direction:column;justify-content:center}
+.cta .tx p{color:var(--muted);margin:16px 0 30px}
+@media(max-width:900px){.cta .box{grid-template-columns:1fr}.cta .ph img{min-height:260px}.cta .tx{padding:36px 26px}}
+footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}footer .fine{max-width:640px}
+/* Чат с тьютором (из варианта 4, светлый) */
+.chat{background:var(--paper);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+.chat-bar{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);background:#fff}
+.chat-bar .av{width:34px;height:34px;border-radius:50%;background:var(--green);color:var(--lime);display:grid;place-items:center;font-weight:800}
+.chat-bar b{display:block;font-size:15px}.chat-bar small{color:var(--muted);font-size:12px}
+.chat-tag{margin-left:auto;font-size:11px;font-weight:700;color:var(--muted);background:var(--sand);border-radius:6px;padding:3px 8px}
+.msgs{padding:18px;min-height:280px;max-height:360px;overflow:auto;display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,#fff,var(--paper))}
+.m{max-width:84%;padding:11px 14px;border-radius:16px;font-size:15px;line-height:1.5;animation:fade .35s}
+.m.u{align-self:flex-end;background:var(--ink);color:#fff;border-bottom-right-radius:4px}
+.m.a{align-self:flex-start;background:#eef4ea;color:var(--ink);border-bottom-left-radius:4px}
+.m.a small{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--green-2);margin-bottom:3px}
+.typing::after{content:"▍";color:var(--green-2);animation:blink .8s infinite}@keyframes blink{50%{opacity:0}}
+.asks{display:flex;gap:8px;flex-wrap:wrap;padding:12px 18px 18px;border-top:1px solid var(--line);background:#fff}
+.asks button{border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:8px 14px;font:600 14px Manrope,sans-serif;cursor:pointer;transition:all .2s}
+.asks button:hover{border-color:var(--green-2);background:#eef4ea}
+.chat-note{font-size:12px;color:var(--muted);padding:0 18px 14px;background:#fff}
+.soon{display:inline-block;font-style:normal;font-size:11px;font-weight:800;letter-spacing:.04em;color:#8c491f;background:#fff1e6;border-radius:6px;padding:2px 7px;margin-left:6px;vertical-align:2px}
+/* Карточки интерфейса вместо стоковых фото */
+.ui{border-radius:24px;aspect-ratio:5/4;background:linear-gradient(150deg,#e9efe3,#f6f1e6);display:grid;place-items:center;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.ui::before{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,#dbee8666,transparent 70%);right:-60px;top:-80px}
+.ui-card{position:relative;width:100%;max-width:380px;background:#fff;border-radius:18px;box-shadow:0 18px 40px #17231d1f;padding:18px 20px;font-size:14px}
+.ui-card h5{margin:0 0 10px;font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.ui-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-top:1px solid #eee}
+.ui-bar{height:8px;border-radius:5px;background:#eef0ea;overflow:hidden;margin-top:4px}.ui-bar i{display:block;height:100%;border-radius:5px;background:var(--green-2)}.ui-bar i.lo{background:#c05a32}
+.ui-miss{background:var(--green);color:#fff;border-radius:14px;padding:12px 14px}.ui-miss small{color:var(--lime);font-size:10px;font-weight:800;letter-spacing:.1em}.ui-miss b{display:block;margin-top:2px}
+.ui-opt{border:1px solid #e3e8df;border-radius:10px;padding:8px 10px;margin-top:7px}.ui-opt.ok{background:#e4f1d8;border-color:#2f7d61;font-weight:700}
+.ui-hint{margin-top:8px;background:#edf5e4;color:#355632;border-radius:10px;padding:8px 10px;font-size:12px}
+/* Появление */
+.rv{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}.rv.in{opacity:1;transform:none}
+.dock{position:fixed;left:12px;right:12px;bottom:12px;z-index:40;display:none;gap:8px;padding:8px;border-radius:999px;background:#fffdf9ee;backdrop-filter:blur(12px);box-shadow:0 12px 30px #0003;transform:translateY(150%);transition:transform .4s}
+.dock.show{transform:none}.dock a{flex:1;justify-content:center;padding:12px}
+@media(max-width:760px){.dock{display:flex}footer{padding-bottom:110px}section{padding:80px 0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="top" id="top"><div class="wrap">
+  <a class="logo" href="#"><i>↗</i>Мой колледж</a>
+  <nav><a href="#why">Зачем</a><a href="#roles">Для кого</a><a href="#try">Урок</a><a href="#data">Данные</a><a href="#pilot">Пилот</a><a href="#faq">Вопросы</a></nav>
+  <a class="btn btn-dark" href="#contact">Обсудить пилот</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="kicker">AI-тьютор колледжа · в Telegram</span>
+    <h1>AI-тьютор, который <em>не решает за студента</em></h1>
+    <p class="lead">Учебное приложение колледжа прямо в Telegram: короткие задачи по вашей программе, подсказки ступенями вместо готовых ответов, кабинет преподавателя и куратора.</p>
+    <div class="ctas"><a class="btn btn-dark" href="#try">Попробовать урок <span class="arr">→</span></a><a class="btn btn-line" href="#contact">Обсудить пилот</a></div>
+    <div class="proof">
+      <div><b data-n="0">0</b>установок — работает в Telegram</div>
+      <div><b data-n="2">0</b>языка обучения: РУС и ҚАЗ</div>
+      <div><b data-n="3">0</b>ступени подсказок — без готового ответа</div>
+    </div>
+  </div>
+  <div class="hero-media">
+    <div class="chat" aria-label="Демонстрация: как отвечает тьютор">
+      <div class="chat-bar"><span class="av">↗</span><div><b>Тьютор «Мой колледж»</b><small>урок «Условия» · шаг 2</small></div><span class="chat-tag">демонстрация</span></div>
+      <div class="msgs" id="msgs"><div class="m a"><small>ТЬЮТОР</small>Привет! Застрял на скидке в кафе? Спрашивай — подскажу, как думать 🙂</div></div>
+      <div class="asks" id="asks"><button data-k="solve">Просто реши за меня</button><button data-k="hint">Дай подсказку</button><button data-k="why">Почему 1000 не больше 1000?</button><button data-k="off">Напиши сочинение по истории</button></div>
+      <div class="chat-note">Нажмите вопрос — так тьютор отвечает студенту.</div>
+    </div>
+  </div>
+</div></section>
+
+<div class="strip"><div class="wrap">
+  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>Закон РК № 94-V</span>
+  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>Пилот — на сервере в РК</span>
+  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h9M8.5 3v2M6 5c1 4 4 7 7 8M11 5c-1 4-4 7-7 8M14 21l4-9 4 9M15.5 18h5"/></svg>Русский и казахский</span>
+  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 4L3 11l6 2 2 6 3-4 5 4z"/></svg>Внутри Telegram</span>
+  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Утверждает преподаватель</span>
+</div></div>
+
+<section class="why" id="why"><div class="wrap">
+  <p class="quote rv">«Публичный чат-бот решает задачу за студента. Мы делаем наоборот — студент думает сам, а колледж видит результат.»<small>Почему не «GPT-бот для группы»</small></p>
+  <div class="pts">
+    <div class="pt rv"><span class="n">01</span><div><h3>Данные студентов уходят за рубеж</h3><p>Имя, ответы, вопросы — всё, что студент пишет публичному боту, обрабатывается за пределами Казахстана.</p><span class="law">Закон РК № 94-V, ст. 12 — локализация баз данных</span></div></div>
+    <div class="pt rv"><span class="n">02</span><div><h3>Несовершеннолетние — отдельный риск</h3><p>Студентам колледжа часто 15–17 лет. Колледж не может проконтролировать, на чьём аккаунте и с чьего согласия они работают.</p></div></div>
+    <div class="pt rv"><span class="n">03</span><div><h3>Готовые ответы вместо навыка</h3><p>Универсальный бот решает задачу за секунды. Работа сдана — навыка нет, и преподаватель этого не увидит.</p></div></div>
+    <div class="pt rv"><span class="n">04</span><div><h3>Преподаватель ничего не видит</h3><p>Кто занимался, кто застрял, какая тема провалилась у всей группы — в чужом чат-боте нет ни отчётов, ни контроля.</p></div></div>
+  </div>
+</div></section>
+
+<section class="roles" id="roles"><div class="wrap">
+  <span class="kicker">Для кого</span>
+  <h2 class="rv">Одно приложение — <em>три роли</em></h2>
+  <div class="tabs" id="tabs"><button class="on" data-r="r1">Студент</button><button data-r="r2">Преподаватель</button><button data-r="r3">Куратор и колледж</button></div>
+  <div class="role on" id="r1">
+    <div class="ui"><div class="ui-card"><div class="ui-miss"><small>PYTHON · ОСНОВЫ</small><b>Почини скидку в студенческом кафе</b></div><div style="margin-top:10px;font-weight:700">Чек ровно на 1 000 ₸. Что сделает касса?</div><div class="ui-opt">Даст скидку</div><div class="ui-opt ok">Не даст скидку ✓</div><div class="ui-hint"><b>Вопрос:</b> верно ли, что 1000 &gt; 1000?</div></div></div>
+    <div><h3>Учится сам — <em class="serif">по 10 минут</em></h3><ul>
+      <li><div><b>Задачи из жизни</b><span>Касса в кафе, двор у дома, деталь на чертеже — по специальности.</span></div></li>
+      <li><div><b>Подсказки ступенями</b><span>Намёк → вопрос → пример. Готового ответа нет.</span></div></li>
+      <li><div><b>Новая задача без подсказок</b><span>Подтверждает навык, а не выученный ответ.</span></div></li>
+      <li><div><b>Без установки и паролей</b><span>Личная ссылка от куратора открывает приложение в Telegram.</span></div></li></ul></div>
+  </div>
+  <div class="role" id="r2">
+    <div class="ui"><div class="ui-card"><h5>ИС-21 · слабые темы</h5><div class="ui-row" style="border:0;display:block"><div style="display:flex;justify-content:space-between"><span>Граница 1000 &gt; 1000</span><b>48%</b></div><div class="ui-bar"><i class="lo" style="width:48%"></i></div></div><div class="ui-row" style="display:block"><div style="display:flex;justify-content:space-between"><span>Условие с and / or</span><b>71%</b></div><div class="ui-bar"><i style="width:71%"></i></div></div><div class="ui-row"><span>⚠ Камила Н. — 4 подсказки на шаге 2</span></div><div class="ui-row"><span>🙋 Тимур К.: «Нужна помощь»</span></div></div></div>
+    <div><h3>Видит каждого — <em class="serif">без проверки тетрадей</em></h3><ul>
+      <li><div><b>Свой план занятий <em class="soon">скоро</em></b><span>Загружает КТП — AI готовит черновики задач, преподаватель утверждает. Сейчас задания готовим вместе с преподавателем по ТЗ.</span></div></li>
+      <li><div><b>«Кто застрял»</b><span>Две ошибки подряд или много подсказок — сразу видно в кабинете.</span></div></li>
+      <li><div><b>Слабые темы группы</b><span>Какой шаг провалили многие — где объяснить ещё раз.</span></div></li>
+      <li><div><b>Обращения студентов</b><span>Кнопка «Нужна помощь» в уроке — вопрос приходит преподавателю.</span></div></li>
+      <li><div><b>Задания со сроком, выгрузка в Excel <em class="soon">скоро</em></b><span>Следующая часть кабинета.</span></div></li></ul></div>
+  </div>
+  <div class="role" id="r3">
+    <div class="ui"><div class="ui-card"><h5>Куратор · ИС-21</h5><div class="ui-row" style="border:0"><span>Нургалиева Камила<br><small style="color:#5d6b63">16 лет</small></span><span class="tag t-ok">Согласие родителя · № 7</span></div><div class="ui-row"><span>Сейткалиев Әлихан<br><small style="color:#5d6b63">18 лет</small></span><span class="tag t-ok">Вошёл</span></div><div class="ui-row"><span>Абенова Диана<br><small style="color:#5d6b63">17 лет</small></span><span class="tag t-w">Ждём бланк</span></div></div></div>
+    <div><h3>Колледж — <em class="serif">под контролем</em></h3><ul>
+      <li><div><b>Куратор ведёт группу</b><span>Вносит студентов, видит возраст, отмечает согласия родителей.</span></div></li>
+      <li><div><b>Личные ссылки и QR</b><span>Каждому студенту — своя ссылка; выдать на паре по QR.</span></div></li>
+      <li><div><b>Данные в Казахстане</b><span>Пилот с реальными студентами запускаем на сервере в РК — фиксируем в договоре.</span></div></li>
+      <li><div><b>Пилот на одной группе</b><span>Решение о расширении — по цифрам, без долгих обязательств.</span></div></li></ul></div>
+  </div>
+</div></section>
+
+<section class="try" id="try"><div class="wrap">
+  <div>
+    <span class="kicker">Попробуйте сами</span>
+    <h2 class="rv">Урок, в котором <em>ответ не дают</em></h2>
+    <p class="lead rv">Пройдите шаг из настоящего урока по Python. Ошибётесь — тьютор не подскажет ответ, а поднимет вас по лестнице.</p>
+    <div class="ladder" id="ladder">
+      <div class="lad"><b>1</b><div><small>НАМЁК</small>Скидка зависит только от одного числа в чеке.</div></div>
+      <div class="lad"><b>2</b><div><small>ВОПРОС</small>Верно ли, что 1000 &gt; 1000?</div></div>
+      <div class="lad"><b>3</b><div><small>ПРИМЕР</small>«С 18 лет» в коде пишут age &gt;= 18.</div></div>
+      <div class="lad no"><b>✕</b><div><small>ГОТОВЫЙ ОТВЕТ</small>Никогда. Решение — за студентом.</div></div>
+    </div>
+  </div>
+  <div class="phone rv"><div class="screen">
+    <div class="tgbar">Мой колледж <span>мини-приложение</span></div>
+    <div class="sc"><div class="miss"><small>PYTHON · ОСНОВЫ</small><b>Почини скидку в студенческом кафе</b></div><div class="q" id="lesson" aria-live="polite"></div></div>
+  </div></div>
+</div></section>
+
+<section class="cur" id="curator"><div class="wrap">
+  <div class="cur-media rv">
+    <div class="ui" style="aspect-ratio:4/3"><div style="text-align:center;color:var(--muted);font-weight:700;position:relative">Список группы · личные ссылки · QR<br><span style="font-size:42px">👩‍🏫 → 🔗 → 🎓</span></div></div>
+    <div class="roster">
+      <h4>ИС-21 · список группы</h4>
+      <div class="rr"><div class="nm">Нургалиева Камила<small>16 лет</small></div><span class="tag t-w" id="ct">Ждём бланк родителя</span><button class="mk" id="mk">Отметить</button></div>
+      <div class="rr"><div class="nm">Сейткалиев Әлихан<small>18 лет</small></div><span class="tag t-ok">Вошёл</span></div>
+      <div class="rr"><div class="nm">Абенова Диана<small>17 лет</small></div><span class="tag t-ok">Согласие · дело № 13</span></div>
+    </div>
+  </div>
+  <div>
+    <span class="kicker">Куратор</span>
+    <h2 class="rv">За данные отвечает <em>куратор</em>, а не студент</h2>
+    <ol>
+      <li><div><b>Вносит группу один раз</b><span>ФИО и дата рождения — списком от колледжа.</span></div></li>
+      <li><div><b>Следит за возрастом и согласиями</b><span>Родитель подписывает бланк в колледже, куратор ставит отметку. Без неё — только демо.</span></div></li>
+      <li><div><b>Выдаёт личные ссылки</b><span>Скопировать или показать QR на паре. Чужой ссылкой войти нельзя.</span></div></li>
+      <li><div><b>Исправляет ошибки</b><span>Студент свои данные не вводит и не меняет.</span></div></li>
+    </ol>
+  </div>
+</div></section>
+
+<section class="kz" id="data"><div class="bgimg" id="kzbg"></div><div class="wrap">
+  <span class="kicker">Безопасность и закон</span>
+  <h2 class="rv" style="color:#fff;max-width:900px">Данные студентов — <em>в Казахстане</em>. Это условие пилота</h2>
+  <p class="lead rv">Пилот с реальными студентами запускаем на сервере в казахстанском дата-центре — фиксируем в договоре вместе со сроками хранения и удалением. Демо-версия сейчас работает на временном облачном сервере с выдуманными данными. Колледж — оператор персональных данных, мы — исполнитель по договору.</p>
+  <div class="kz-grid rv">
+    <div><b>Сервер в РК — для пилота</b><p>База и резервные копии реальных студентов — в казахстанском дата-центре, по договору.</p></div>
+    <div><b>Согласия до урока</b><p>18+ — в приложении, младше 18 — бланк родителя и отметка куратора.</p></div>
+    <div><b>AI без личных данных</b><p>В модель уходят только вопрос и материал урока. Без ФИО и Telegram ID.</p></div>
+    <div><b>Доступ по роли</b><p>Студент видит своё, куратор — только свою группу. Вход по личной ссылке, HTTPS.</p></div>
+  </div>
+</div></section>
+
+<section id="pilot"><div class="wrap">
+  <span class="kicker">Как начать</span>
+  <h2 class="rv">Начинаем с одной группы. <em>Решение — по результатам</em></h2>
+  <div class="steps" id="steps"><div class="ln" id="ln"></div>
+    <div class="st"><div class="c">1</div><small>30 МИНУТ</small><h3>Показ</h3><p>Урок глазами студента и кабинет — на телефонах вашей команды.</p></div>
+    <div class="st"><div class="c">2</div><small>1 НЕДЕЛЯ</small><h3>ТЗ</h3><p>Анкета и карточки дисциплин. Шаблон ТЗ и бланк согласия — от нас.</p></div>
+    <div class="st"><div class="c">3</div><small>4–6 НЕДЕЛЬ</small><h3>Пилот</h3><p>1–2 группы, ваши темы. Преподаватель утверждает, мы сопровождаем.</p></div>
+    <div class="st"><div class="c">4</div><small>ИТОГ</small><h3>Решение</h3><p>Кто решает новые задачи сам, сколько тем пройдено, сколько времени сэкономлено.</p></div>
+  </div>
+  <div class="note rv">✓ <b>Без долгосрочных обязательств.</b> Расширяем на другие группы и дисциплины, только если пилот показал результат.</div>
+</div></section>
+
+<section id="demo" style="padding-top:0"><div class="wrap">
+  <div class="demo rv">
+    <div><span class="kicker" style="color:var(--lime)">Живое демо</span><h2 style="margin-top:14px">Не верьте на слово — <em>откройте в телефоне</em></h2><p>Четыре дисциплины, русский и казахский, кабинет преподавателя и куратора с демо-группами.</p></div>
+    <div class="dl">
+      <a href="https://t.me/tutornvl_bot?startapp=student">Глазами студента <span>Telegram →</span></a>
+      <a href="https://t.me/tutornvl_bot?startapp=teacher">Глазами преподавателя <span>Telegram →</span></a>
+      <a href="https://college-tutor.vercel.app/about.html">Открыть в браузере <span>сайт →</span></a>
+    </div>
+  </div>
+</div></section>
+
+<section class="faq" id="faq" style="padding-top:0"><div class="wrap">
+  <div><span class="kicker">Вопросы</span><h2 class="rv" style="margin-top:14px">Частые <em>вопросы</em></h2></div>
+  <div>
+    <details><summary>Нужно ли что-то устанавливать?</summary><p>Нет. Приложение открывается внутри Telegram на любом телефоне и в браузере на компьютере. Студенту нужна только личная ссылка от куратора.</p></details>
+    <details><summary>Кто вносит данные студентов и следит за возрастом?</summary><p>Куратор группы: вносит список, видит, кому меньше 18, собирает бланки родителей и ставит отметку. Студент свои данные не вводит и не меняет. Колледж — оператор данных, мы — исполнитель по договору.</p></details>
+    <details><summary>Кто готовит задания? У преподавателей нет времени.</summary><p>Для пилота задачи по вашим темам готовим мы вместе с преподавателем, каждую он утверждает — студенты видят только утверждённое. Автоматические черновики задач по вашему КТП — следующий этап <em class="soon">скоро</em>.</p></details>
+    <details><summary>А если AI ошибётся?</summary><p>Сейчас подсказки в уроке заранее подготовлены и утверждены преподавателем — ошибиться в них AI не может. Ответы AI на свободные вопросы подключаем дальше и только по утверждённым материалам урока: нет ответа в материалах — тьютор предлагает спросить преподавателя, вопрос попадает в кабинет как «нужна помощь».</p></details>
+    <details><summary>Где сейчас хранятся данные?</summary><p>Демо работает на временном облачном сервере и только с выдуманными данными. Для пилота с реальными студентами разворачиваем сервер в казахстанском дата-центре — это условие договора: место хранения, сроки и удаление фиксируем письменно.</p></details>
+    <details><summary>Есть ли казахский язык?</summary><p>Да: интерфейс и уроки на русском и казахском, по умолчанию — язык Telegram студента.</p></details>
+    <details><summary>Сколько это стоит?</summary><p>Зависит от числа групп и дисциплин. После показа и ТЗ готовим предложение на пилот и на расширение.</p></details>
+  </div>
+</div></section>
+
+<section class="cta" id="contact" style="padding-top:0"><div class="wrap">
+  <div class="box rv">
+    <div class="ph"><img src="https://images.unsplash.com/photo-1632647895256-3f75c1865a0f?w=1000&q=72" alt="Преподаватель за ноутбуком" loading="lazy"></div>
+    <div class="tx"><span class="kicker">Следующий шаг</span><h2 style="margin-top:14px">Покажем за <em>30 минут</em></h2><p>На телефонах вашей команды. Ответим на вопросы по закону и безопасности, разберём ваши дисциплины и предложим формат пилота.</p>
+      <div class="ctas"><a class="btn btn-dark" href="#CONTACT_LINK">Записаться на показ <span class="arr">→</span></a><a class="btn btn-line" href="#demo">Сначала демо</a></div></div>
+  </div>
+</div></section>
+
+<nav class="dock" id="dock"><a class="btn btn-line" href="#try">Урок</a><a class="btn btn-dark" href="#contact">Обсудить пилот</a></nav>
+<footer><div class="wrap"><div><b>Мой колледж</b> — учебные приложения для колледжей в Telegram<br>ТОО «Neurovia Labs», Казахстан</div><div class="fine">Фото Астаны — Unsplash. ChatGPT — товарный знак OpenAI; сравнение приведено для информации. Сведения о законодательстве РК даны в общем виде и не являются юридической консультацией: условия хранения и обработки данных фиксируются в договоре с колледжем.</div></div></footer>
+
+<script>
+(()=>{'use strict';
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const top=document.getElementById('top'),dock=document.getElementById('dock'),kz=document.getElementById('kzbg');
+function onScroll(){const y=scrollY;top.classList.toggle('s',y>10);dock.classList.toggle('show',y>innerHeight*.8);
+  if(!RM){const r=kz.parentNode.getBoundingClientRect();kz.style.setProperty('--ky',(r.top*-.15)+'px')}}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+function count(el){const to=+el.dataset.n;if(RM||!to){el.textContent=to;return}const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/1000);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)}
+document.querySelectorAll('[data-n]').forEach(count);
+// Появление
+document.querySelectorAll('.pt,.st').forEach((el,i)=>{el.classList.add('rv');el.style.transitionDelay=(i%4*110)+'ms'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// Шаги пилота
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(!e.isIntersecting)return;o.disconnect();document.getElementById('ln').style.width='100%';
+  document.querySelectorAll('.st').forEach((s,i)=>setTimeout(()=>s.classList.add('on'),RM?0:300+i*420))}),{threshold:.4}).observe(document.getElementById('steps'));
+// Роли
+const tabs=document.getElementById('tabs');tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  tabs.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('.role').forEach(r=>r.classList.toggle('on',r.id===b.dataset.r))});
+// Куратор
+document.getElementById('mk').addEventListener('click',e=>{const t=document.getElementById('ct');t.className='tag t-ok';t.textContent='Согласие · дело № 7';e.target.remove()});
+// Урок
+const L=document.getElementById('lesson'),lads=[...document.querySelectorAll('.lad')];
+const H=['<b>Намёк:</b> скидка зависит только от одного числа в чеке.','<b>Вопрос:</b> верно ли, что 1000 &gt; 1000?','<b>Пример:</b> «с 18 лет» в коде пишут <code>age &gt;= 18</code>.'];
+let h=0;
+const tr=n=>`<div class="meta"><span>ШАГ ${Math.min(n+1,4)} ИЗ 4</span><span>${n}/4 пройдено</span></div><div class="track">${[0,1,2,3].map(i=>`<i class="${i<n?'d':i===n?'c':''}"></i>`).join('')}</div>`;
+function s2(){h=0;lads.forEach(l=>l.classList.remove('on'));L.innerHTML=tr(1)+`<b>Скидка — с 1 000 ₸. В коде кассы:</b><div class="code">if total &gt; 1000:<br>&nbsp;&nbsp;discount()</div><b>Чек ровно на 1 000 ₸. Что сделает касса?</b><button class="opt" data-a="0">Даст скидку</button><button class="opt" data-a="1">Не даст скидку</button><button class="opt" data-a="0">Выдаст ошибку</button><div class="fb" id="fb"></div><div id="hs"></div><button class="hbtn" id="hb">Нужна подсказка</button>`}
+function s3(){L.innerHTML=tr(2)+`<b>Почини условие, чтобы скидка была с 1 000 ₸:</b><div class="code">if total <span id="slot">__</span> 1000:</div><div class="chips"><button class="opt" data-b="0">&lt;</button><button class="opt" data-b="0">==</button><button class="opt" data-b="1">&gt;=</button></div><div class="fb" id="fb"></div>`}
+function fin(){L.innerHTML=tr(4)+`<div class="done"><div class="big">🎉</div><b>Касса починена!</b><div style="font-size:12px;color:#7b8a82;margin-top:4px">Дальше — новая задача без подсказок.</div><button class="again" id="ag">Пройти ещё раз</button></div>`}
+L.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const fb=document.getElementById('fb');
+  if(b.dataset.a!==undefined){if(b.dataset.a==='1'){b.classList.add('ok');fb.className='fb g';fb.textContent='Верно! 1000 > 1000 — ложь.';setTimeout(s3,1200)}else{b.classList.remove('bad');void b.offsetWidth;b.classList.add('bad');fb.className='fb b';fb.textContent='Не совсем. Возьмите подсказку — ответ не дадим.'}}
+  if(b.id==='hb'){if(h<3){document.getElementById('hs').insertAdjacentHTML('beforeend',`<div class="hint">${H[h]}</div>`);lads[h].classList.add('on');h++}if(h>=3){lads[3].classList.add('on');b.disabled=true;b.textContent='Подсказки закончились — дальше сами'}}
+  if(b.dataset.b!==undefined){if(b.dataset.b==='1'){b.classList.add('ok');document.getElementById('slot').textContent='>=';fb.className='fb g';fb.textContent='Скидка работает с 1 000 ₸ ✓';setTimeout(fin,1100)}else{b.classList.remove('bad');void b.offsetWidth;b.classList.add('bad');fb.className='fb b';fb.textContent='Проверьте чек на 1 000 ₸ ещё раз.'}}
+  if(b.id==='ag')s2()});
+s2();
+// Чат: «реши за меня» — готового ответа не будет
+const msgs=document.getElementById('msgs'),asks=document.getElementById('asks');let busy=false,hl=0;
+const Q={solve:'Просто реши за меня',hint:'Дай подсказку',why:'Почему 1000 не больше 1000?',off:'Напиши сочинение по истории'};
+const HL=['Скидка зависит только от одного числа в чеке. От какого?','Наводящий вопрос: верно ли, что 1000 > 1000? А 1000 >= 1000?','Похожий пример: «с 18 лет» в коде пишут age >= 18. Видишь связь со скидкой?','Подсказки закончились 🙂 Попробуй сам — а если не выйдет, нажми «Нужна помощь», преподаватель увидит.'];
+const A={solve:()=>'Готовое решение не дам — так навык не появится 🙂 Давай по шагам: от какого числа в чеке зависит скидка?',hint:()=>HL[Math.min(hl++,3)],why:()=>'Хороший вопрос! «>» — строго больше. 1000 не больше самой себя, они равны. Какой знак включает равенство?',off:()=>'Я отвечаю только по материалам этого урока. По другим предметам — к преподавателю 👩‍🏫'};
+function type(el,text){return new Promise(r=>{if(RM){el.textContent=text;r();return}let i=0;el.classList.add('typing');(function f(){el.textContent=text.slice(0,++i);msgs.scrollTop=msgs.scrollHeight;if(i<text.length)setTimeout(f,14);else{el.classList.remove('typing');r()}})()})}
+asks.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b||busy)return;busy=true;const k=b.dataset.k;
+  msgs.insertAdjacentHTML('beforeend',`<div class="m u">${Q[k]}</div>`);msgs.scrollTop=msgs.scrollHeight;
+  const m=document.createElement('div');m.className='m a';m.innerHTML='<small>ТЬЮТОР</small><span></span>';await new Promise(r=>setTimeout(r,450));msgs.appendChild(m);
+  await type(m.querySelector('span'),A[k]());while(msgs.children.length>7)msgs.firstElementChild.remove();busy=false});
+})();
+</script>
+</body>
+</html>
