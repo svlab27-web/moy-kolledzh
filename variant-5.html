@@ -30,11 +30,12 @@ section{padding:110px 0}
 .top{position:sticky;top:0;z-index:30;transition:background .3s,box-shadow .3s}
 .top.s{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
 .top .wrap{display:flex;align-items:center;height:76px;gap:28px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;text-decoration:none}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;text-decoration:none;white-space:nowrap;flex:none}
 .logo i{width:36px;height:36px;border-radius:11px;background:var(--green);color:var(--lime);display:grid;place-items:center;font-style:normal;font-size:20px}
 .top nav{display:flex;gap:28px;margin-left:auto;font-size:15px;font-weight:600;color:var(--muted)}.top nav a{text-decoration:none}.top nav a:hover{color:var(--ink)}
 .top .btn{padding:11px 20px;font-size:14px}
 @media(max-width:900px){.top nav{display:none}.top .btn{margin-left:auto}}
+@media(max-width:420px){.logo{font-size:17px}.top .btn{padding:9px 14px;font-size:13px}.top .btn .lg{display:none}}
 /* Hero */
 .hero{padding:40px 0 90px}
 .hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
@@ -183,6 +184,8 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
 .asks button{border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:8px 14px;font:600 14px Manrope,sans-serif;cursor:pointer;transition:all .2s}
 .asks button:hover{border-color:var(--green-2);background:#eef4ea}
 .chat-note{font-size:12px;color:var(--muted);padding:0 18px 14px;background:#fff}
+.chat,.phone{scroll-margin-bottom:110px}
+@media(max-width:760px){.hero{padding-bottom:110px}.asks button{padding:10px 14px}}
 .soon{display:inline-block;font-style:normal;font-size:11px;font-weight:800;letter-spacing:.04em;color:#8c491f;background:#fff1e6;border-radius:6px;padding:2px 7px;margin-left:6px;vertical-align:2px}
 /* Карточки интерфейса вместо стоковых фото */
 .ui{border-radius:24px;aspect-ratio:5/4;background:linear-gradient(150deg,#e9efe3,#f6f1e6);display:grid;place-items:center;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
@@ -207,7 +210,7 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
 <header class="top" id="top"><div class="wrap">
   <a class="logo" href="#"><i>↗</i>Мой колледж</a>
   <nav><a href="#why">Зачем</a><a href="#roles">Для кого</a><a href="#try">Урок</a><a href="#data">Данные</a><a href="#pilot">Пилот</a><a href="#faq">Вопросы</a></nav>
-  <a class="btn btn-dark" href="#contact">Обсудить пилот</a>
+  <a class="btn btn-dark" href="#contact">Пилот<span class="lg">: обсудить</span></a>
 </div></header>
 
 <section class="hero"><div class="wrap">
@@ -384,7 +387,10 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
 (()=>{'use strict';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const top=document.getElementById('top'),dock=document.getElementById('dock'),kz=document.getElementById('kzbg');
-function onScroll(){const y=scrollY;top.classList.toggle('s',y>10);dock.classList.toggle('show',y>innerHeight*.8);
+// Нижняя панель прячется, пока на экране чат или урок — чтобы не закрывать их кнопки
+const busyZones=[...document.querySelectorAll('.chat,.phone')];
+const overInteractive=()=>busyZones.some(z=>{const r=z.getBoundingClientRect();return r.top<innerHeight&&r.bottom>innerHeight-120});
+function onScroll(){const y=scrollY;top.classList.toggle('s',y>10);dock.classList.toggle('show',y>innerHeight*.8&&!overInteractive());
   if(!RM){const r=kz.parentNode.getBoundingClientRect();kz.style.setProperty('--ky',(r.top*-.15)+'px')}}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 function count(el){const to=+el.dataset.n;if(RM||!to){el.textContent=to;return}const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/1000);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)}
