@@ -94,11 +94,13 @@ canvas#conf{position:fixed;inset:0;pointer-events:none;z-index:50}
 @media(max-width:900px){.cards{grid-template-columns:1fr;gap:70px}}
 /* Лестница */
 .climb{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.stairs{position:relative;height:360px}
-.step{position:absolute;left:calc(var(--i)*23%);bottom:0;width:27%;height:calc(25% + var(--i)*22%);border-radius:18px 18px 8px 8px;padding:12px;color:#fff;font-weight:800;font-size:14px;transform-origin:bottom;transform:scaleY(.15);opacity:.4;transition:transform .6s cubic-bezier(.3,1.5,.5,1),opacity .4s}
-.step.on{transform:scaleY(1);opacity:1}.step small{display:block;font-size:11px;opacity:.85;letter-spacing:.08em}
-.s0{background:var(--sky)}.s1{background:var(--mint)}.s2{background:var(--violet)}.s3{background:var(--coral)}
-.climber{position:absolute;width:64px;bottom:0;left:2%;transition:left .6s,bottom .6s;z-index:2}
+.stairs-box{background:#fff;border:2.5px solid var(--ink);border-radius:26px;box-shadow:6px 6px 0 var(--ink);padding:22px 22px 18px}
+.stairs{position:relative;height:300px}
+.step{position:absolute;left:calc(64px + var(--i)*(100% - 64px)/4);bottom:0;width:calc((100% - 64px)/4 - 8px);height:calc(28% + var(--i)*22%);border-radius:16px 16px 6px 6px;padding:12px 10px;background:#ece8f7;color:#9a93b8;font:800 clamp(12px,1.3vw,15px) Rubik,sans-serif;line-height:1.15;overflow-wrap:anywhere;hyphens:auto;transition:background .45s,color .45s,transform .45s cubic-bezier(.3,1.6,.5,1)}
+.step small{display:block;font:800 12px Nunito,sans-serif;letter-spacing:.06em;opacity:.85;margin-bottom:3px}
+.step.on{color:#fff;transform:translateY(-4px)}.s0.on{background:var(--sky)}.s1.on{background:var(--mint)}.s2.on{background:var(--violet)}.s3.on{background:var(--coral);animation:shake .5s}
+.climber{position:absolute;width:58px;bottom:0;left:0;transition:left .6s cubic-bezier(.3,1.4,.5,1),bottom .6s cubic-bezier(.3,1.4,.5,1);z-index:2}
+.stairs-cap{margin-top:14px;font-weight:700;color:var(--muted);font-size:15px;text-align:center}
 .cl-ctl{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
 .cl-msg{margin-top:16px;font-weight:800;min-height:28px;color:var(--violet)}
 @media(max-width:900px){.climb{grid-template-columns:1fr}}
@@ -222,13 +224,13 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
     <div class="cl-ctl"><button class="btn b-y" id="cgo">🙋 Нужна подсказка</button><button class="btn b-w" id="crs">Сначала</button></div>
     <div class="cl-msg" id="cmsg"></div>
   </div>
-  <div class="stairs" id="stairs">
+  <div class="stairs-box"><div class="stairs" id="stairs">
     <img class="climber" id="climber" src="img/man_student_3d_default.png" alt="">
-    <div class="step s0" style="--i:0"><small>1</small>Намёк</div>
-    <div class="step s1" style="--i:1"><small>2</small>Вопрос</div>
-    <div class="step s2" style="--i:2"><small>3</small>Пример</div>
-    <div class="step s3" style="--i:3"><small>✕</small>Ответ? Нет!</div>
-  </div>
+    <div class="step s0" style="--i:0"><small>СТУПЕНЬ 1</small>Намёк</div>
+    <div class="step s1" style="--i:1"><small>СТУПЕНЬ 2</small>Наводящий вопрос</div>
+    <div class="step s2" style="--i:2"><small>СТУПЕНЬ 3</small>Похожий пример</div>
+    <div class="step s3" style="--i:3"><small>НАВЕРХУ</small>Готового ответа нет</div>
+  </div><div class="stairs-cap">Студент поднимается по ступеням подсказок — но решает задачу сам</div></div>
 </div></section>
 
 <section id="cab"><div class="wrap">
@@ -334,7 +336,8 @@ s2();
 // Лестница
 const steps=[...document.querySelectorAll('.step')],cl=$('climber'),msg=$('cmsg'),go=$('cgo');let lv=0;
 const MSG=['Ступень 1: намёк — думай сам.','Ступень 2: наводящий вопрос.','Ступень 3: похожий пример, но не эта задача.','Готового ответа не будет. Решение — за студентом! 💪'];
-function place(){if(lv===0){cl.style.left='2%';cl.style.bottom='0';return}const s=steps[Math.min(lv,3)-1];cl.style.left=`calc(${(lv-1)*23}% + 4%)`;cl.style.bottom=s.offsetHeight+'px'}
+// Студент стоит на верхней ступени, которую уже открыли (до первой — у подножия лестницы)
+function place(){const i=Math.min(lv,4)-1;if(i<0){cl.style.left='0px';cl.style.bottom='0px';return}cl.style.left=`calc(64px + ${i+.5} * (100% - 64px) / 4 - 33px)`;cl.style.bottom=(steps[i].offsetHeight+2)+'px'}
 go.onclick=()=>{if(lv>=4)return;steps[lv].classList.add('on');msg.textContent=MSG[lv];lv++;setTimeout(place,250);if(lv>=4){go.disabled=true;go.style.opacity=.6}};
 $('crs').onclick=()=>{lv=0;steps.forEach(s=>s.classList.remove('on'));msg.textContent='';go.disabled=false;go.style.opacity=1;place()};
 // Бенто
