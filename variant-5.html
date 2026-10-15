@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Мой колледж — AI-тьютор для колледжа</title>
-<meta name="description" content="Учебное приложение колледжа в Telegram: задачи по вашей программе, подсказки вместо готовых ответов, кабинет преподавателя и куратора. Данные студентов — в Казахстане.">
+<meta name="description" content="AI-тьютор колледжа в Telegram, который не решает за студента: задачи по вашей программе, подсказки ступенями, кабинет преподавателя и куратора. Пилот — на сервере в Казахстане, фиксируем в договоре.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 <style>
@@ -35,7 +35,8 @@ section{padding:110px 0}
 .top nav{display:flex;gap:28px;margin-left:auto;font-size:15px;font-weight:600;color:var(--muted)}.top nav a{text-decoration:none}.top nav a:hover{color:var(--ink)}
 .top .btn{padding:11px 20px;font-size:14px}
 @media(max-width:900px){.top nav{display:none}.top .btn{margin-left:auto}}
-@media(max-width:420px){.logo{font-size:17px}.top .btn{padding:9px 14px;font-size:13px}.top .btn .lg{display:none}}
+.top .btn .sm{display:none}
+@media(max-width:420px){.logo{font-size:17px}.top .btn{padding:9px 14px;font-size:13px}.top .btn .lg{display:none}.top .btn .sm{display:inline}}
 /* Hero */
 .hero{padding:40px 0 90px}
 .hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
@@ -210,7 +211,7 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
 <header class="top" id="top"><div class="wrap">
   <a class="logo" href="#"><i>↗</i>Мой колледж</a>
   <nav><a href="#why">Зачем</a><a href="#roles">Для кого</a><a href="#try">Урок</a><a href="#data">Данные</a><a href="#pilot">Пилот</a><a href="#faq">Вопросы</a></nav>
-  <a class="btn btn-dark" href="#contact">Пилот<span class="lg">: обсудить</span></a>
+  <a class="btn btn-dark" href="#contact"><span class="lg">Обсудить пилот</span><span class="sm">Пилот</span></a>
 </div></header>
 
 <section class="hero"><div class="wrap">
@@ -374,7 +375,7 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
 
 <section class="cta" id="contact" style="padding-top:0"><div class="wrap">
   <div class="box rv">
-    <div class="ph"><img src="https://images.unsplash.com/photo-1632647895256-3f75c1865a0f?w=1000&q=72" alt="Преподаватель за ноутбуком" loading="lazy"></div>
+    <div class="ui" style="aspect-ratio:auto;min-height:420px;border-radius:0"><div class="ui-card"><h5>Показ · 30 минут</h5><div class="ui-row" style="border:0"><span>🎓 Урок глазами студента</span><b>10 мин</b></div><div class="ui-row"><span>👩‍🏫 Кабинет преподавателя и куратора</span><b>10 мин</b></div><div class="ui-row"><span>⚖️ Данные, согласия, договор</span><b>5 мин</b></div><div class="ui-row"><span>🗓 Формат пилота</span><b>5 мин</b></div></div></div>
     <div class="tx"><span class="kicker">Следующий шаг</span><h2 style="margin-top:14px">Покажем за <em>30 минут</em></h2><p>На телефонах вашей команды. Ответим на вопросы по закону и безопасности, разберём ваши дисциплины и предложим формат пилота.</p>
       <div class="ctas"><a class="btn btn-dark" href="#CONTACT_LINK">Записаться на показ <span class="arr">→</span></a><a class="btn btn-line" href="#demo">Сначала демо</a></div></div>
   </div>
