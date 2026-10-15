@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Мой колледж — AI-тьютор для колледжа</title>
+<meta name="description" content="Учебное приложение колледжа в Telegram: задачи по вашей программе, подсказки вместо готовых ответов, кабинет преподавателя и куратора. Данные студентов — в Казахстане.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fffaf1;--ink:#1d1640;--muted:#5f5a7a;--violet:#6c5ce7;--violet-d:#4b3fc4;--yellow:#ffd43b;--yellow-d:#e8b100;--mint:#2ed39a;--mint-d:#13a875;--coral:#ff6b6b;--coral-d:#e04848;--sky:#4cc9f0;--sky-d:#1fa3cf;--card:#fff;--line:#ece6f7}
+*{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 Nunito,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:Rubik,sans-serif;margin:0;line-height:1.08;letter-spacing:-.01em}
+h2{font-size:clamp(32px,4.4vw,56px);font-weight:800}
+.mark{display:inline-block;padding:0 .22em;border-radius:.3em;transform:rotate(-1.5deg)}
+.m-y{background:var(--yellow)}.m-m{background:var(--mint);color:#fff}.m-v{background:var(--violet);color:#fff}.m-c{background:var(--coral);color:#fff}.m-s{background:var(--sky);color:#fff}
+.lead{font-size:clamp(18px,1.7vw,21px);color:var(--muted);max-width:640px}
+section{padding:100px 0;position:relative}
+.center{text-align:center}.center .lead{margin:16px auto 0}
+.pillk{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:800;font-size:14px;box-shadow:3px 3px 0 var(--ink)}
+/* Кнопки «как в игре» */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:16px;padding:16px 26px;font:800 17px Rubik,sans-serif;text-decoration:none;cursor:pointer;transition:transform .1s,box-shadow .1s;position:relative;top:0}
+.btn:active{transform:translateY(4px)}
+.b-v{background:var(--violet);color:#fff;box-shadow:0 5px 0 var(--violet-d)}.b-v:active{box-shadow:0 1px 0 var(--violet-d)}
+.b-y{background:var(--yellow);color:var(--ink);box-shadow:0 5px 0 var(--yellow-d)}.b-y:active{box-shadow:0 1px 0 var(--yellow-d)}
+.b-w{background:#fff;color:var(--ink);box-shadow:0 5px 0 #d9d2ea;border:2px solid #e3dcf2}.b-w:active{box-shadow:0 1px 0 #d9d2ea}
+.b-m{background:var(--mint);color:#fff;box-shadow:0 5px 0 var(--mint-d)}
+/* Шапка */
+.top{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(12px);border-bottom:2px solid transparent;transition:border-color .3s}
+.top.s{border-color:var(--line)}
+.top .wrap{display:flex;align-items:center;gap:26px;height:74px}
+.logo{display:flex;align-items:center;gap:10px;font:800 20px Rubik,sans-serif;text-decoration:none}
+.logo img{width:38px;height:38px}
+.top nav{margin-left:auto;display:flex;gap:24px;font-weight:800;font-size:15px;color:var(--muted)}.top nav a{text-decoration:none}.top nav a:hover{color:var(--violet)}
+.top .btn{padding:11px 18px;font-size:15px}
+@media(max-width:900px){.top nav{display:none}.top .btn{margin-left:auto}}
+/* Hero */
+.hero{padding:50px 0 80px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(40px,5.6vw,74px);font-weight:800;margin:22px 0}
+.hero .lead{margin-bottom:32px}
+.ctas{display:flex;gap:14px;flex-wrap:wrap}
+.trust{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
+.trust span{display:flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--line);border-radius:12px;padding:7px 12px;font-weight:800;font-size:14px}
+.trust img{width:22px;height:22px}
+.stage{position:relative;height:640px}
+.blob{position:absolute;inset:40px 0 0 20px;background:var(--violet);border-radius:46% 54% 52% 48%/48% 42% 58% 52%;animation:morph 12s ease-in-out infinite}
+@keyframes morph{50%{border-radius:58% 42% 40% 60%/40% 58% 42% 60%}}
+.floater{position:absolute;filter:drop-shadow(0 18px 18px #1d164033);animation:fl 5s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-16px) rotate(calc(var(--r,0deg) + 6deg))}}
+.f1{width:110px;left:-10px;top:30px;--r:-12deg}.f2{width:96px;right:-6px;top:110px;animation-delay:-1.4s;--r:10deg}.f3{width:90px;left:4px;bottom:70px;animation-delay:-2.6s}.f4{width:84px;right:10px;bottom:20px;animation-delay:-3.4s;--r:-8deg}
+.xp{position:absolute;right:-6px;top:20px;background:#fff;border:2px solid var(--ink);border-radius:14px;padding:8px 12px;font:800 14px Rubik,sans-serif;box-shadow:3px 3px 0 var(--ink);z-index:3;display:flex;gap:6px;align-items:center}
+.xp img{width:22px}
+@media(max-width:960px){.hero .wrap{grid-template-columns:1fr}.stage{height:620px;max-width:420px;margin:0 auto;width:100%}}
+/* Телефон */
+.phone{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-3deg);width:300px;border-radius:42px;background:var(--ink);padding:11px;box-shadow:0 30px 60px #1d164055;z-index:2;transition:transform .4s}
+.phone:hover{transform:translate(-50%,-50%) rotate(0)}
+.screen{border-radius:32px;background:#f7f5ff;overflow:hidden;font-size:13.5px}
+.tgbar{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#fff;font-weight:800;border-bottom:2px solid #eee9fb}.tgbar span{color:var(--muted);font-weight:700;font-size:12px}
+.sc{padding:12px}
+.miss{background:var(--violet);color:#fff;border-radius:16px;padding:12px 14px;display:flex;gap:10px;align-items:center}.miss img{width:40px}.miss small{color:var(--yellow);font-weight:800;font-size:10px;letter-spacing:.1em}.miss b{display:block;font-family:Rubik;font-size:15px;line-height:1.2}
+.q{background:#fff;border:2px solid #eee9fb;border-radius:16px;padding:12px;margin-top:10px;min-height:322px}
+.meta{display:flex;justify-content:space-between;font-size:11px;font-weight:800;color:var(--muted)}
+.track{display:flex;gap:4px;margin:7px 0 10px}.track i{flex:1;height:8px;border-radius:5px;background:#eee9fb;transition:background .4s}.track i.d{background:var(--mint)}.track i.c{background:var(--yellow)}
+.code{font:12px ui-monospace,Menlo,monospace;background:var(--ink);color:var(--yellow);border-radius:10px;padding:8px 10px;margin:7px 0 5px}
+.opt{display:block;width:100%;text-align:left;border:2px solid #e6e0f5;border-bottom-width:4px;border-radius:12px;padding:9px 11px;margin-top:7px;background:#fff;font:700 13px Nunito,sans-serif;color:var(--ink);cursor:pointer;transition:all .15s}
+.opt:hover{border-color:var(--violet)}.opt.ok{background:#dff8ec;border-color:var(--mint-d)}.opt.bad{background:#ffe5e5;border-color:var(--coral-d);animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.chips{display:flex;gap:6px}.chips .opt{text-align:center;font-family:ui-monospace,monospace}
+.fb{min-height:18px;margin-top:7px;font-size:12px;font-weight:800}.fb.g{color:var(--mint-d)}.fb.b{color:var(--coral-d)}
+.hint{margin-top:7px;background:#fff6d6;border-radius:10px;padding:8px 10px;font-size:12px;animation:pop .3s}
+@keyframes pop{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
+.hbtn{margin-top:9px;width:100%;border:2px dashed #c9bff0;background:none;border-radius:12px;padding:7px;font:800 12px Nunito,sans-serif;color:var(--violet);cursor:pointer}.hbtn:disabled{opacity:.5}
+.done{text-align:center;padding-top:40px}.done img{width:90px;margin:0 auto;animation:pop .5s}.again{margin-top:10px;border:0;background:var(--violet);color:#fff;border-radius:12px;padding:9px 16px;font:800 12px Rubik,sans-serif;box-shadow:0 4px 0 var(--violet-d);cursor:pointer}
+canvas#conf{position:fixed;inset:0;pointer-events:none;z-index:50}
+/* Бегущая строка */
+.mq-wrap{overflow:hidden;padding:14px 0}.mq{background:var(--ink);color:#fff;padding:20px 0;overflow:hidden;transform:rotate(-1.5deg);margin:0 -20px}
+.mq .tr{display:inline-flex;gap:46px;white-space:nowrap;animation:mq 34s linear infinite;font:800 22px Rubik,sans-serif;align-items:center}
+.mq span{display:flex;align-items:center;gap:12px}.mq img{width:34px}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* Роли */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+.rc{border-radius:28px;padding:30px 26px 26px;border:2.5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);position:relative;transition:transform .25s,box-shadow .25s}
+.rc:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink)}
+.rc img.av{width:96px;margin:-62px 0 8px;filter:drop-shadow(0 10px 10px #1d164033)}
+.rc h3{font-size:26px;font-weight:800;margin-bottom:12px}
+.rc ul{margin:0;padding:0;list-style:none}.rc li{padding:6px 0 6px 28px;position:relative;font-weight:700;font-size:16px}
+.rc li::before{content:"✓";position:absolute;left:0;top:6px;width:20px;height:20px;border-radius:6px;background:#ffffffb3;display:grid;place-items:center;font-size:12px}
+.c1{background:#ffe9a8}.c2{background:#d4f7e9}.c3{background:#e2ddff}
+.cards{padding-top:40px}
+@media(max-width:900px){.cards{grid-template-columns:1fr;gap:70px}}
+/* Лестница */
+.climb{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.stairs{position:relative;height:360px}
+.step{position:absolute;left:calc(var(--i)*23%);bottom:0;width:27%;height:calc(25% + var(--i)*22%);border-radius:18px 18px 8px 8px;padding:12px;color:#fff;font-weight:800;font-size:14px;transform-origin:bottom;transform:scaleY(.15);opacity:.4;transition:transform .6s cubic-bezier(.3,1.5,.5,1),opacity .4s}
+.step.on{transform:scaleY(1);opacity:1}.step small{display:block;font-size:11px;opacity:.85;letter-spacing:.08em}
+.s0{background:var(--sky)}.s1{background:var(--mint)}.s2{background:var(--violet)}.s3{background:var(--coral)}
+.climber{position:absolute;width:64px;bottom:0;left:2%;transition:left .6s,bottom .6s;z-index:2}
+.cl-ctl{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.cl-msg{margin-top:16px;font-weight:800;min-height:28px;color:var(--violet)}
+@media(max-width:900px){.climb{grid-template-columns:1fr}}
+/* Бенто кабинета */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:50px}
+.tile{background:#fff;border:2.5px solid var(--ink);border-radius:26px;padding:24px;box-shadow:5px 5px 0 var(--ink);overflow:hidden;position:relative}
+.tile h3{font-size:21px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:10px}.tile h3 img{width:36px}
+.tile p{margin:0;color:var(--muted);font-size:16px}
+.w3{grid-column:span 3}.w2{grid-column:span 2}.w4{grid-column:span 4}
+.chart{display:flex;align-items:flex-end;gap:12px;height:150px;margin-top:20px}
+.chart div{flex:1;border-radius:12px 12px 6px 6px;height:0;transition:height 1.1s cubic-bezier(.3,1.4,.5,1);position:relative}
+.chart div span{position:absolute;top:-24px;left:0;right:0;text-align:center;font:800 13px Rubik}
+.chart div:nth-child(1){background:var(--coral)}.chart div:nth-child(2){background:var(--yellow)}.chart div:nth-child(3){background:var(--mint)}.chart div:nth-child(4){background:var(--sky)}
+.chart-l{display:flex;gap:12px;margin-top:8px;font-size:12px;font-weight:800;color:var(--muted)}.chart-l span{flex:1;text-align:center}
+.rw{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:2px dashed var(--line);font-weight:700;font-size:15px}.rw .nm{flex:1}.rw small{display:block;color:var(--muted);font-size:12px}
+.tg{font-size:12px;font-weight:800;border-radius:8px;padding:4px 9px;white-space:nowrap}.tg.ok{background:#dff8ec;color:var(--mint-d)}.tg.w{background:#ffe5e5;color:var(--coral-d)}
+.mini{border:0;border-radius:10px;padding:7px 11px;font:800 12px Rubik;cursor:pointer;background:var(--violet);color:#fff;box-shadow:0 3px 0 var(--violet-d)}
+.bubble{background:#f1eefc;border-radius:16px 16px 16px 4px;padding:10px 12px;margin-top:10px;font-weight:700;font-size:14px;opacity:0;transform:translateY(8px);transition:all .4s}.bubble.me{background:var(--yellow);margin-left:auto;border-radius:16px 16px 4px 16px;max-width:70%}.bubble.on{opacity:1;transform:none}
+.yard{display:flex;gap:16px;align-items:center;margin-top:14px}.yard input{flex:1;accent-color:var(--violet);height:24px}
+.yv{font:800 28px Rubik;min-width:110px;text-align:right}.ym{font-weight:800;color:var(--muted);min-height:24px;margin-top:6px}.ym.ok{color:var(--mint-d)}
+.lang{display:inline-flex;background:#f1eefc;border-radius:12px;padding:4px;margin-top:12px}.lang button{border:0;background:none;border-radius:9px;padding:6px 14px;font:800 14px Rubik;color:var(--muted);cursor:pointer}.lang button.on{background:var(--violet);color:#fff}
+.ls{margin-top:10px;font-weight:800;font-size:16px;min-height:56px;transition:opacity .2s}
+@media(max-width:900px){.bento{grid-template-columns:1fr}.w2,.w3,.w4{grid-column:auto}}
+/* Безопасность */
+.safe{background:var(--ink);color:#fff;border-radius:44px;margin:0 16px}
+.safe .lead{color:#c5bfe6}
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px}
+.sc2{background:#2a2156;border-radius:24px;padding:24px;transition:transform .25s}.sc2:hover{transform:translateY(-6px) rotate(-1deg)}
+.sc2 img{width:64px;margin-bottom:12px}.sc2 h3{font-size:20px;margin-bottom:8px}.sc2 p{margin:0;color:#c5bfe6;font-size:15px}
+@media(max-width:900px){.sg{grid-template-columns:1fr 1fr}}@media(max-width:560px){.sg{grid-template-columns:1fr}.safe{margin:0;border-radius:30px}}
+/* Пилот-дорога */
+.road{position:relative;margin-top:60px}
+.road svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;z-index:0}
+.road path{fill:none;stroke:#d9d2ea;stroke-width:6;stroke-dasharray:14 12;stroke-linecap:round}
+.rocket{position:absolute;width:64px;z-index:3;left:0;top:0;transform:translate(-50%,-50%) rotate(45deg);transition:left .15s linear,top .15s linear}
+.rs{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative;z-index:1}
+.rs .card{background:#fff;border:2.5px solid var(--ink);border-radius:24px;padding:22px;box-shadow:5px 5px 0 var(--ink)}
+.rs .card:nth-child(even){margin-top:80px}
+.rs .n{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:14px;font:800 20px Rubik;color:#fff;margin-bottom:10px}
+.rs h3{font-size:22px;margin-bottom:6px}.rs p{margin:0;color:var(--muted);font-size:16px}.rs small{font-weight:800;color:var(--violet);font-size:13px}
+@media(max-width:900px){.rs{grid-template-columns:1fr 1fr}.rs .card:nth-child(even){margin-top:40px}.road svg,.rocket{display:none}}@media(max-width:520px){.rs{grid-template-columns:1fr}.rs .card:nth-child(even){margin-top:0}}
+.free{margin-top:40px;background:var(--yellow);border:2.5px solid var(--ink);border-radius:20px;padding:18px 22px;font-weight:800;box-shadow:4px 4px 0 var(--ink);display:flex;gap:12px;align-items:center}.free img{width:40px}
+/* Демо */
+.demo{background:var(--violet);color:#fff;border-radius:40px;padding:56px;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.demo h2{color:#fff}.demo p{color:#e0dcff}
+.demo .deco{position:absolute;width:150px;right:30px;top:-20px;opacity:.9;animation:fl 6s ease-in-out infinite}
+.dl{display:grid;gap:14px;position:relative;z-index:1}
+@media(max-width:900px){.demo{grid-template-columns:1fr;padding:34px 24px}.demo .deco{display:none}}
+/* FAQ */
+details{background:#fff;border:2.5px solid var(--ink);border-radius:20px;padding:18px 22px;margin-top:14px;box-shadow:4px 4px 0 var(--ink)}
+summary{cursor:pointer;list-style:none;font:800 18px Rubik;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";width:30px;height:30px;flex:none;border-radius:10px;background:var(--yellow);display:grid;place-items:center;transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}details p{margin:12px 0 0;color:var(--muted);animation:pop .3s}
+/* CTA */
+.cta{text-align:center}
+.cta .box{background:var(--mint);border:2.5px solid var(--ink);border-radius:40px;padding:64px 30px;box-shadow:8px 8px 0 var(--ink);position:relative}
+.cta .box img.pp{width:110px;margin:-110px auto 10px;filter:drop-shadow(0 14px 14px #1d164033)}
+.cta h2{color:var(--ink)}.cta p{font-weight:700;font-size:19px;max-width:640px;margin:14px auto 28px}
+footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}footer .fine{max-width:640px}
+.rv{opacity:0;transform:translateY(34px) scale(.98);transition:opacity .7s,transform .7s cubic-bezier(.3,1.3,.5,1)}.rv.in{opacity:1;transform:none}
+.dock{position:fixed;left:12px;right:12px;bottom:12px;z-index:40;display:none;gap:8px;transform:translateY(160%);transition:transform .4s}.dock.show{transform:none}.dock a{flex:1;padding:14px}
+@media(max-width:760px){.dock{display:flex}footer{padding-bottom:110px}section{padding:76px 0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.step{transform:none;opacity:1}}
+</style>
+</head>
+<body>
+<canvas id="conf"></canvas>
+
+<header class="top" id="top"><div class="wrap">
+  <a class="logo" href="#"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Graduation%20cap/3D/graduation_cap_3d.png" alt="">Мой колледж</a>
+  <nav><a href="#roles">Для кого</a><a href="#climb">Подсказки</a><a href="#cab">Кабинет</a><a href="#safe">Данные</a><a href="#pilot">Пилот</a><a href="#faq">Вопросы</a></nav>
+  <a class="btn b-v" href="#contact">Обсудить пилот</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="pillk">✨ AI-тьютор для колледжа · в Telegram</span>
+    <h1>Студенты учатся <span class="mark m-y">сами.</span> Преподаватель видит, <span class="mark m-v">кто застрял.</span></h1>
+    <p class="lead">Своё учебное приложение колледжа: короткие задачи по вашей программе, подсказки вместо готовых ответов, кабинет преподавателя и куратора. Данные — в Казахстане.</p>
+    <div class="ctas"><a class="btn b-v" href="#try-it">Пройти урок →</a><a class="btn b-w" href="#contact">Обсудить пилот</a></div>
+    <div class="trust">
+      <span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Shield/3D/shield_3d.png" alt="">Закон № 94-V</span>
+      <span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Globe%20showing%20asia-australia/3D/globe_showing_asia-australia_3d.png" alt="">Серверы в РК</span>
+      <span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Speech%20balloon/3D/speech_balloon_3d.png" alt="">РУС / ҚАЗ</span>
+      <span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Mobile%20phone/3D/mobile_phone_3d.png" alt="">Без установки</span>
+    </div>
+  </div>
+  <div class="stage" id="try-it">
+    <div class="blob"></div>
+    <img class="floater f1" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Books/3D/books_3d.png" alt="">
+    <img class="floater f2" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Light%20bulb/3D/light_bulb_3d.png" alt="">
+    <img class="floater f3" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Rocket/3D/rocket_3d.png" alt="">
+    <img class="floater f4" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Brain/3D/brain_3d.png" alt="">
+    <div class="xp"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Sparkles/3D/sparkles_3d.png" alt=""><span id="xp">0</span> XP</div>
+    <div class="phone"><div class="screen">
+      <div class="tgbar">Мой колледж <span>мини-приложение</span></div>
+      <div class="sc"><div class="miss"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Hot%20beverage/3D/hot_beverage_3d.png" alt=""><div><small>PYTHON · ОСНОВЫ</small><b>Почини скидку в студенческом кафе</b></div></div><div class="q" id="lesson" aria-live="polite"></div></div>
+    </div></div>
+  </div>
+</div></section>
+
+<div class="mq-wrap"><div class="mq" aria-hidden="true"><div class="tr">
+  <span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Laptop/3D/laptop_3d.png" alt="">Python</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Bar%20chart/3D/bar_chart_3d.png" alt="">Высшая математика</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Puzzle%20piece/3D/puzzle_piece_3d.png" alt="">Спецтехнологии</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Hot%20beverage/3D/hot_beverage_3d.png" alt="">Сервис</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Speech%20balloon/3D/speech_balloon_3d.png" alt="">РУС / ҚАЗ</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Locked/3D/locked_3d.png" alt="">Данные в РК</span>
+  <span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Laptop/3D/laptop_3d.png" alt="">Python</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Bar%20chart/3D/bar_chart_3d.png" alt="">Высшая математика</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Puzzle%20piece/3D/puzzle_piece_3d.png" alt="">Спецтехнологии</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Hot%20beverage/3D/hot_beverage_3d.png" alt="">Сервис</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Speech%20balloon/3D/speech_balloon_3d.png" alt="">РУС / ҚАЗ</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Locked/3D/locked_3d.png" alt="">Данные в РК</span>
+</div></div></div>
+
+<section id="roles"><div class="wrap">
+  <div class="center"><span class="pillk">👋 Для кого</span><h2 class="rv" style="margin-top:18px">Одно приложение — <span class="mark m-m">три роли</span></h2></div>
+  <div class="cards">
+    <div class="rc c1 rv"><img class="av" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Woman%20student/Default/3D/woman_student_3d_default.png" alt=""><h3>Студент</h3><ul><li>Задачи из жизни по 10 минут</li><li>Подсказки ступенями, без ответа</li><li>Новая задача — проверка навыка</li><li>Личная ссылка — и он в Telegram</li></ul></div>
+    <div class="rc c2 rv"><img class="av" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Woman%20teacher/Default/3D/woman_teacher_3d_default.png" alt=""><h3>Преподаватель</h3><ul><li>Свой КТП — AI готовит черновики</li><li>Утверждает каждое задание</li><li>Видит, кто застрял и где</li><li>Задания со сроком и Excel</li></ul></div>
+    <div class="rc c3 rv"><img class="av" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Teacher/Default/3D/teacher_3d_default.png" alt=""><h3>Куратор</h3><ul><li>Вносит группу один раз</li><li>Следит за возрастом</li><li>Отмечает согласия родителей</li><li>Выдаёт личные ссылки и QR</li></ul></div>
+  </div>
+</div></section>
+
+<section id="climb" style="background:#f3efff"><div class="wrap climb">
+  <div>
+    <span class="pillk">🪜 Педагогика</span>
+    <h2 class="rv" style="margin-top:18px">AI — <span class="mark m-c">тьютор,</span> а не решебник</h2>
+    <p class="lead rv" style="margin-top:14px">Помощь выдаётся ступенями. Нажмите «Нужна подсказка» — так её видит студент.</p>
+    <div class="cl-ctl"><button class="btn b-y" id="cgo">🙋 Нужна подсказка</button><button class="btn b-w" id="crs">Сначала</button></div>
+    <div class="cl-msg" id="cmsg"></div>
+  </div>
+  <div class="stairs" id="stairs">
+    <img class="climber" id="climber" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Man%20student/Default/3D/man_student_3d_default.png" alt="">
+    <div class="step s0" style="--i:0"><small>1</small>Намёк</div>
+    <div class="step s1" style="--i:1"><small>2</small>Вопрос</div>
+    <div class="step s2" style="--i:2"><small>3</small>Пример</div>
+    <div class="step s3" style="--i:3"><small>✕</small>Ответ? Нет!</div>
+  </div>
+</div></section>
+
+<section id="cab"><div class="wrap">
+  <div class="center"><span class="pillk">📊 Кабинет</span><h2 class="rv" style="margin-top:18px">Всё видно — <span class="mark m-s">без проверки тетрадей</span></h2><p class="lead">Покликайте: это работает.</p></div>
+  <div class="bento">
+    <div class="tile w4 rv"><h3><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Bar%20chart/3D/bar_chart_3d.png" alt="">Слабые темы группы</h3><p>Доля решивших шаг с первой попытки — ИС-21</p>
+      <div class="chart" id="chart"><div data-h="48"><span>48%</span></div><div data-h="63"><span>63%</span></div><div data-h="81"><span>81%</span></div><div data-h="92"><span>92%</span></div></div>
+      <div class="chart-l"><span>Граница 1000</span><span>and / or</span><span>Циклы</span><span>Переменные</span></div></div>
+    <div class="tile w2 rv"><h3><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Speech%20balloon/3D/speech_balloon_3d.png" alt="">Нужна помощь</h3>
+      <div id="chat"><div class="bubble">Камила: «Почему 1000 не больше 1000?» 🤔</div><div class="bubble me">Сравни: 1000 &gt; 1000 или 1000 &gt;= 1000?</div><div class="bubble">Поняла! Спасибо 🙌</div></div></div>
+    <div class="tile w3 rv"><h3><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Teacher/Default/3D/teacher_3d_default.png" alt="">Список куратора</h3>
+      <div class="rw"><div class="nm">Нургалиева Камила<small>16 лет</small></div><span class="tg w" id="ct">Ждём бланк</span><button class="mini" id="mk">Отметить</button></div>
+      <div class="rw"><div class="nm">Сейткалиев Әлихан<small>18 лет</small></div><span class="tg ok">Вошёл</span></div>
+      <div class="rw"><div class="nm">Абенова Диана<small>17 лет</small></div><span class="tg ok">Согласие · № 13</span></div></div>
+    <div class="tile w3 rv"><h3><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Puzzle%20piece/3D/puzzle_piece_3d.png" alt="">Тренажёр: двор у дома</h3><p>Забор 40 м. Какая ширина даёт максимум площади?</p>
+      <div class="yard"><input type="range" min="1" max="19" value="4" id="yard" aria-label="Ширина"><div class="yv" id="yv">64 м²</div></div><div class="ym" id="ym">Двигайте ползунок</div></div>
+    <div class="tile w3 rv"><h3><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Speech%20balloon/3D/speech_balloon_3d.png" alt="">РУС / ҚАЗ</h3><p>Интерфейс и уроки на двух языках.</p>
+      <div class="lang" id="lang"><button class="on" data-l="ru">РУС</button><button data-l="kk">ҚАЗ</button></div><div class="ls" id="ls">Чек ровно на 1 000 ₸. Что сделает касса?</div></div>
+    <div class="tile w3 rv"><h3><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Spiral%20calendar/3D/spiral_calendar_3d.png" alt="">По вашему КТП</h3><p>Загрузите план занятий — AI готовит черновики задач, преподаватель утверждает. Студенты видят только утверждённое.</p></div>
+  </div>
+</div></section>
+
+<section class="safe" id="safe"><div class="wrap">
+  <span class="pillk" style="color:var(--ink)">🔒 Данные</span>
+  <h2 class="rv" style="margin-top:18px">Данные студентов — <span class="mark m-y" style="color:var(--ink)">в Казахстане</span></h2>
+  <p class="lead rv" style="margin-top:14px">Колледж — оператор данных, мы — исполнитель по договору. За список студентов, возраст и согласия отвечает куратор.</p>
+  <div class="sg">
+    <div class="sc2 rv"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Globe%20showing%20asia-australia/3D/globe_showing_asia-australia_3d.png" alt=""><h3>Серверы в РК</h3><p>База и резервные копии — в казахстанском дата-центре.</p></div>
+    <div class="sc2 rv"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Check%20mark%20button/3D/check_mark_button_3d.png" alt=""><h3>Согласия до урока</h3><p>18+ — в приложении. Младше 18 — бланк родителя и отметка куратора.</p></div>
+    <div class="sc2 rv"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Robot/3D/robot_3d.png" alt=""><h3>AI без личных данных</h3><p>В модель — только вопрос и материал урока. Без ФИО и Telegram ID.</p></div>
+    <div class="sc2 rv"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Locked/3D/locked_3d.png" alt=""><h3>Доступ по роли</h3><p>Студент видит своё, преподаватель — свою группу. HTTPS, журнал действий.</p></div>
+  </div>
+</div></section>
+
+<section id="pilot"><div class="wrap">
+  <div class="center"><span class="pillk">🚀 Как начать</span><h2 class="rv" style="margin-top:18px">Одна группа. <span class="mark m-v">Решение — по цифрам</span></h2></div>
+  <div class="road" id="road">
+    <svg id="rsvg" preserveAspectRatio="none"><path id="rpath" d=""/></svg>
+    <img class="rocket" id="rocket" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Rocket/3D/rocket_3d.png" alt="">
+    <div class="rs">
+      <div class="card"><span class="n" style="background:var(--sky)">1</span><small>30 МИНУТ</small><h3>Показ</h3><p>Урок и кабинет — на телефонах вашей команды.</p></div>
+      <div class="card"><span class="n" style="background:var(--mint)">2</span><small>1 НЕДЕЛЯ</small><h3>ТЗ</h3><p>Анкета и карточки дисциплин. Шаблон и бланк согласия — от нас.</p></div>
+      <div class="card"><span class="n" style="background:var(--violet)">3</span><small>4–6 НЕДЕЛЬ</small><h3>Пилот</h3><p>1–2 группы, ваши темы. Мы сопровождаем.</p></div>
+      <div class="card"><span class="n" style="background:var(--coral)">4</span><small>ИТОГ</small><h3>Решение</h3><p>Кто решает сам, сколько тем пройдено, сколько времени сэкономлено.</p></div>
+    </div>
+  </div>
+  <div class="free rv"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Check%20mark%20button/3D/check_mark_button_3d.png" alt="">Без долгосрочных обязательств — расширяем, только если пилот показал результат.</div>
+</div></section>
+
+<section id="demo" style="padding-top:20px"><div class="wrap">
+  <div class="demo rv"><img class="deco" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Mobile%20phone/3D/mobile_phone_3d.png" alt="">
+    <div><h2>Откройте демо <span class="mark m-y" style="color:var(--ink)">в телефоне</span></h2><p style="font-size:19px;margin-top:14px">Четыре дисциплины, РУС и ҚАЗ, кабинет преподавателя и куратора.</p></div>
+    <div class="dl"><a class="btn b-y" href="https://t.me/tutornvl_bot?startapp=student">🎓 Глазами студента</a><a class="btn b-w" href="https://t.me/tutornvl_bot?startapp=teacher">👩‍🏫 Глазами преподавателя</a><a class="btn b-w" href="https://college-tutor.vercel.app/about.html">💻 В браузере</a></div>
+  </div>
+</div></section>
+
+<section id="faq" style="padding-top:20px"><div class="wrap" style="max-width:860px">
+  <div class="center"><span class="pillk">❓ Вопросы</span><h2 class="rv" style="margin:18px 0 20px">Частые вопросы</h2></div>
+  <details><summary>Нужно ли что-то устанавливать?</summary><p>Нет. Приложение открывается в Telegram на любом телефоне и в браузере. Студенту нужна только личная ссылка от куратора.</p></details>
+  <details><summary>Кто вносит данные студентов и следит за возрастом?</summary><p>Куратор: вносит список, видит, кому меньше 18, собирает бланки родителей и ставит отметку. Студент свои данные не вводит и не меняет.</p></details>
+  <details><summary>Кто готовит задания?</summary><p>AI готовит черновики по вашему плану занятий, преподаватель утверждает. Студенты видят только утверждённое.</p></details>
+  <details><summary>А если AI ошибётся?</summary><p>Тьютор отвечает только по утверждённым материалам. Нет ответа — предлагает обратиться к преподавателю.</p></details>
+  <details><summary>Сколько это стоит?</summary><p>Зависит от числа групп и дисциплин. После показа и ТЗ готовим предложение.</p></details>
+</div></section>
+
+<section class="cta" id="contact" style="padding-top:110px"><div class="wrap">
+  <div class="box rv"><img class="pp" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Party%20popper/3D/party_popper_3d.png" alt="">
+    <h2>Покажем за 30 минут</h2><p>На телефонах вашей команды. Ответим на вопросы по закону и безопасности и предложим формат пилота.</p>
+    <div class="ctas" style="justify-content:center"><a class="btn b-v" href="#CONTACT_LINK">Записаться на показ →</a><a class="btn b-w" href="#demo">Сначала демо</a></div></div>
+</div></section>
+
+<nav class="dock" id="dock"><a class="btn b-w" href="#try-it">Урок</a><a class="btn b-v" href="#contact">Пилот</a></nav>
+<footer><div class="wrap"><div><b>Мой колледж</b> — учебные приложения для колледжей в Telegram<br>ТОО «Neurovia Labs», Казахстан</div><div class="fine">3D-иконки — Microsoft Fluent Emoji (MIT). Сведения о законодательстве РК даны в общем виде и не являются юридической консультацией: условия хранения и обработки данных фиксируются в договоре с колледжем.</div></div></footer>
+
+<script>
+(()=>{'use strict';
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;const $=id=>document.getElementById(id);
+const top=$('top'),dock=$('dock');
+// Появление
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%3*90)+'ms';io.observe(el)});
+const once=(el,cb,th=.35)=>new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){o.disconnect();cb()}}),{threshold:th}).observe(el);
+// Конфетти
+const cv=$('conf'),cx=cv.getContext('2d');let parts=[];
+function confetti(){if(RM)return;cv.width=innerWidth;cv.height=innerHeight;const C=['#6c5ce7','#ffd43b','#2ed39a','#ff6b6b','#4cc9f0'];
+  for(let i=0;i<140;i++)parts.push({x:innerWidth/2,y:innerHeight*.45,vx:(Math.random()-.5)*16,vy:-Math.random()*14-4,s:6+Math.random()*6,c:C[i%5],r:Math.random()*6,life:0});
+  (function f(){cx.clearRect(0,0,cv.width,cv.height);parts.forEach(p=>{p.vy+=.45;p.x+=p.vx;p.y+=p.vy;p.r+=.2;p.life++;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);cx.restore()});
+    parts=parts.filter(p=>p.y<cv.height+40&&p.life<200);if(parts.length)requestAnimationFrame(f);else cx.clearRect(0,0,cv.width,cv.height)})()}
+// XP
+let xp=0;function addXp(n){const el=$('xp'),from=xp;xp+=n;const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/600);el.textContent=Math.round(from+(xp-from)*k);if(k<1)requestAnimationFrame(f)})(t0)}
+// Урок
+const L=$('lesson'),H=['<b>Намёк:</b> скидка зависит только от одного числа в чеке.','<b>Вопрос:</b> верно ли, что 1000 &gt; 1000?','<b>Пример:</b> «с 18 лет» пишут <code>age &gt;= 18</code>.'];let h=0;
+const tr=n=>`<div class="meta"><span>ШАГ ${Math.min(n+1,4)} ИЗ 4</span><span>${n}/4 ✓</span></div><div class="track">${[0,1,2,3].map(i=>`<i class="${i<n?'d':i===n?'c':''}"></i>`).join('')}</div>`;
+function s2(){h=0;L.innerHTML=tr(1)+`<b>Скидка — с 1 000 ₸. В коде кассы:</b><div class="code">if total &gt; 1000:<br>&nbsp;&nbsp;discount()</div><b>Чек ровно на 1 000 ₸. Что сделает касса?</b><button class="opt" data-a="0">Даст скидку</button><button class="opt" data-a="1">Не даст скидку</button><button class="opt" data-a="0">Выдаст ошибку</button><div class="fb" id="fb"></div><div id="hs"></div><button class="hbtn" id="hb">🙋 Нужна подсказка</button>`}
+function s3(){L.innerHTML=tr(2)+`<b>Почини условие, чтобы скидка была с 1 000 ₸:</b><div class="code">if total <span id="slot">__</span> 1000:</div><div class="chips"><button class="opt" data-b="0">&lt;</button><button class="opt" data-b="0">==</button><button class="opt" data-b="1">&gt;=</button></div><div class="fb" id="fb"></div>`}
+function fin(){L.innerHTML=tr(4)+`<div class="done"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Party%20popper/3D/party_popper_3d.png" alt=""><b style="font-family:Rubik;font-size:17px">Касса починена! +50 XP</b><div style="font-size:12px;color:#5f5a7a;margin-top:4px">Дальше — новая задача без подсказок.</div><button class="again" id="ag">Ещё раз</button></div>`;confetti();addXp(50)}
+L.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const fb=$('fb');
+  if(b.dataset.a!==undefined){if(b.dataset.a==='1'){b.classList.add('ok');fb.className='fb g';fb.textContent='Верно! 1000 > 1000 — ложь. +20 XP';addXp(20);setTimeout(s3,1200)}else{b.classList.remove('bad');void b.offsetWidth;b.classList.add('bad');fb.className='fb b';fb.textContent='Не совсем. Возьми подсказку — ответ не дадим 😉'}}
+  if(b.id==='hb'){if(h<3){$('hs').insertAdjacentHTML('beforeend',`<div class="hint">${H[h]}</div>`);h++}if(h>=3){b.disabled=true;b.textContent='Подсказки закончились — дальше сам 💪'}}
+  if(b.dataset.b!==undefined){if(b.dataset.b==='1'){b.classList.add('ok');$('slot').textContent='>=';fb.className='fb g';fb.textContent='Скидка работает! ✓';setTimeout(fin,900)}else{b.classList.remove('bad');void b.offsetWidth;b.classList.add('bad');fb.className='fb b';fb.textContent='Проверь чек на 1 000 ₸ ещё раз.'}}
+  if(b.id==='ag')s2()});
+s2();
+// Лестница
+const steps=[...document.querySelectorAll('.step')],cl=$('climber'),msg=$('cmsg'),go=$('cgo');let lv=0;
+const MSG=['Ступень 1: намёк — думай сам.','Ступень 2: наводящий вопрос.','Ступень 3: похожий пример, но не эта задача.','Готового ответа не будет. Решение — за студентом! 💪'];
+function place(){if(lv===0){cl.style.left='2%';cl.style.bottom='0';return}const s=steps[Math.min(lv,3)-1];cl.style.left=`calc(${(lv-1)*23}% + 4%)`;cl.style.bottom=s.offsetHeight+'px'}
+go.onclick=()=>{if(lv>=4)return;steps[lv].classList.add('on');msg.textContent=MSG[lv];lv++;setTimeout(place,250);if(lv>=4){go.disabled=true;go.style.opacity=.6}};
+$('crs').onclick=()=>{lv=0;steps.forEach(s=>s.classList.remove('on'));msg.textContent='';go.disabled=false;go.style.opacity=1;place()};
+// Бенто
+once($('chart'),()=>document.querySelectorAll('#chart div').forEach((d,i)=>setTimeout(()=>d.style.height=d.dataset.h+'%',RM?0:i*150)));
+once($('chat'),()=>document.querySelectorAll('#chat .bubble').forEach((b,i)=>setTimeout(()=>b.classList.add('on'),RM?0:300+i*900)));
+$('mk').onclick=e=>{const t=$('ct');t.className='tg ok';t.textContent='Согласие · № 7';e.target.remove()};
+const yi=$('yard');function yard(){const x=+yi.value;$('yv').textContent=x*(20-x)+' м²';const m=$('ym');m.className='ym'+(x===10?' ok':'');m.textContent=x===10?'Максимум! 10 × 10 — производная = 0 🎯':`${x} × ${20-x} м`}yi.oninput=yard;yard();
+const LS={ru:'Чек ровно на 1 000 ₸. Что сделает касса?',kk:'Чек дәл 1 000 ₸. Касса не істейді?'};
+$('lang').onclick=e=>{const b=e.target.closest('[data-l]');if(!b)return;document.querySelectorAll('#lang button').forEach(x=>x.classList.toggle('on',x===b));const t=$('ls');t.style.opacity=0;setTimeout(()=>{t.textContent=LS[b.dataset.l];t.style.opacity=1},180)};
+// Ракета по дороге
+const road=$('road'),svg=$('rsvg'),path=$('rpath'),rk=$('rocket');
+function buildPath(){const cards=[...road.querySelectorAll('.rs .card')],rr=road.getBoundingClientRect();svg.setAttribute('viewBox',`0 0 ${rr.width} ${rr.height}`);
+  const pts=cards.map(c=>{const r=c.getBoundingClientRect();return[r.left-rr.left+r.width/2,r.top-rr.top-24]});
+  let d=`M ${pts[0][0]-120} ${pts[0][1]+60}`;pts.forEach((p,i)=>{const prev=i?pts[i-1]:[pts[0][0]-120,pts[0][1]+60];const mx=(prev[0]+p[0])/2;d+=` C ${mx} ${prev[1]}, ${mx} ${p[1]}, ${p[0]} ${p[1]}`});path.setAttribute('d',d)}
+function moveRocket(){if(getComputedStyle(rk).display==='none')return;const r=road.getBoundingClientRect();const k=Math.min(1,Math.max(0,(innerHeight*.8-r.top)/(r.height+innerHeight*.3)));
+  const len=path.getTotalLength();if(!len)return;const p=path.getPointAtLength(len*k),p2=path.getPointAtLength(Math.min(len,len*k+2));const a=Math.atan2(p2.y-p.y,p2.x-p.x)*180/Math.PI;
+  rk.style.left=p.x+'px';rk.style.top=p.y+'px';rk.style.transform=`translate(-50%,-50%) rotate(${a+45}deg)`}
+addEventListener('resize',()=>{buildPath();moveRocket()});buildPath();moveRocket();
+addEventListener('scroll',()=>{const y=scrollY;top.classList.toggle('s',y>10);dock.classList.toggle('show',y>innerHeight*.8);moveRocket()},{passive:true});
+addEventListener('load',()=>{buildPath();moveRocket()});
+})();
+</script>
+</body>
+</html>
