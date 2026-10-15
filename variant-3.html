@@ -85,7 +85,7 @@ canvas#conf{position:fixed;inset:0;pointer-events:none;z-index:50}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
 .rc{border-radius:28px;padding:30px 26px 26px;border:2.5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);position:relative;transition:transform .25s,box-shadow .25s}
 .rc:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink)}
-.rc img.av{width:96px;margin:-62px 0 8px;filter:drop-shadow(0 10px 10px #1d164033)}
+.rc img.av{width:96px;height:96px;object-fit:contain;margin:-62px 0 8px;filter:drop-shadow(0 10px 10px #1d164033)}
 .rc h3{font-size:26px;font-weight:800;margin-bottom:12px}
 .rc ul{margin:0;padding:0;list-style:none}.rc li{padding:6px 0 6px 28px;position:relative;font-weight:700;font-size:16px}
 .rc li::before{content:"✓";position:absolute;left:0;top:6px;width:20px;height:20px;border-radius:6px;background:#ffffffb3;display:grid;place-items:center;font-size:12px}
@@ -168,7 +168,7 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
 <canvas id="conf"></canvas>
 
 <header class="top" id="top"><div class="wrap">
-  <a class="logo" href="#"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Graduation%20cap/3D/graduation_cap_3d.png" alt="">Мой колледж</a>
+  <a class="logo" href="#"><img src="img/graduation_cap_3d.png" alt="">Мой колледж</a>
   <nav><a href="#roles">Для кого</a><a href="#climb">Подсказки</a><a href="#cab">Кабинет</a><a href="#safe">Данные</a><a href="#pilot">Пилот</a><a href="#faq">Вопросы</a></nav>
   <a class="btn b-v" href="#contact">Обсудить пилот</a>
 </div></header>
@@ -180,37 +180,37 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
     <p class="lead">Своё учебное приложение колледжа: короткие задачи по вашей программе, подсказки вместо готовых ответов, кабинет преподавателя и куратора. Данные — в Казахстане.</p>
     <div class="ctas"><a class="btn b-v" href="#try-it">Пройти урок →</a><a class="btn b-w" href="#contact">Обсудить пилот</a></div>
     <div class="trust">
-      <span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Shield/3D/shield_3d.png" alt="">Закон № 94-V</span>
-      <span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Globe%20showing%20asia-australia/3D/globe_showing_asia-australia_3d.png" alt="">Серверы в РК</span>
-      <span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Speech%20balloon/3D/speech_balloon_3d.png" alt="">РУС / ҚАЗ</span>
-      <span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Mobile%20phone/3D/mobile_phone_3d.png" alt="">Без установки</span>
+      <span><img src="img/shield_3d.png" alt="">Закон № 94-V</span>
+      <span><img src="img/globe_showing_asia-australia_3d.png" alt="">Серверы в РК</span>
+      <span><img src="img/speech_balloon_3d.png" alt="">РУС / ҚАЗ</span>
+      <span><img src="img/mobile_phone_3d.png" alt="">Без установки</span>
     </div>
   </div>
   <div class="stage" id="try-it">
     <div class="blob"></div>
-    <img class="floater f1" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Books/3D/books_3d.png" alt="">
-    <img class="floater f2" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Light%20bulb/3D/light_bulb_3d.png" alt="">
-    <img class="floater f3" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Rocket/3D/rocket_3d.png" alt="">
-    <img class="floater f4" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Brain/3D/brain_3d.png" alt="">
-    <div class="xp"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Sparkles/3D/sparkles_3d.png" alt=""><span id="xp">0</span> XP</div>
+    <img class="floater f1" src="img/books_3d.png" alt="">
+    <img class="floater f2" src="img/light_bulb_3d.png" alt="">
+    <img class="floater f3" src="img/rocket_3d.png" alt="">
+    <img class="floater f4" src="img/brain_3d.png" alt="">
+    <div class="xp"><img src="img/sparkles_3d.png" alt=""><span id="xp">0</span> XP</div>
     <div class="phone"><div class="screen">
       <div class="tgbar">Мой колледж <span>мини-приложение</span></div>
-      <div class="sc"><div class="miss"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Hot%20beverage/3D/hot_beverage_3d.png" alt=""><div><small>PYTHON · ОСНОВЫ</small><b>Почини скидку в студенческом кафе</b></div></div><div class="q" id="lesson" aria-live="polite"></div></div>
+      <div class="sc"><div class="miss"><img src="img/hot_beverage_3d.png" alt=""><div><small>PYTHON · ОСНОВЫ</small><b>Почини скидку в студенческом кафе</b></div></div><div class="q" id="lesson" aria-live="polite"></div></div>
     </div></div>
   </div>
 </div></section>
 
 <div class="mq-wrap"><div class="mq" aria-hidden="true"><div class="tr">
-  <span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Laptop/3D/laptop_3d.png" alt="">Python</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Bar%20chart/3D/bar_chart_3d.png" alt="">Высшая математика</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Puzzle%20piece/3D/puzzle_piece_3d.png" alt="">Спецтехнологии</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Hot%20beverage/3D/hot_beverage_3d.png" alt="">Сервис</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Speech%20balloon/3D/speech_balloon_3d.png" alt="">РУС / ҚАЗ</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Locked/3D/locked_3d.png" alt="">Данные в РК</span>
-  <span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Laptop/3D/laptop_3d.png" alt="">Python</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Bar%20chart/3D/bar_chart_3d.png" alt="">Высшая математика</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Puzzle%20piece/3D/puzzle_piece_3d.png" alt="">Спецтехнологии</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Hot%20beverage/3D/hot_beverage_3d.png" alt="">Сервис</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Speech%20balloon/3D/speech_balloon_3d.png" alt="">РУС / ҚАЗ</span><span><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Locked/3D/locked_3d.png" alt="">Данные в РК</span>
+  <span><img src="img/laptop_3d.png" alt="">Python</span><span><img src="img/bar_chart_3d.png" alt="">Высшая математика</span><span><img src="img/puzzle_piece_3d.png" alt="">Спецтехнологии</span><span><img src="img/hot_beverage_3d.png" alt="">Сервис</span><span><img src="img/speech_balloon_3d.png" alt="">РУС / ҚАЗ</span><span><img src="img/locked_3d.png" alt="">Данные в РК</span>
+  <span><img src="img/laptop_3d.png" alt="">Python</span><span><img src="img/bar_chart_3d.png" alt="">Высшая математика</span><span><img src="img/puzzle_piece_3d.png" alt="">Спецтехнологии</span><span><img src="img/hot_beverage_3d.png" alt="">Сервис</span><span><img src="img/speech_balloon_3d.png" alt="">РУС / ҚАЗ</span><span><img src="img/locked_3d.png" alt="">Данные в РК</span>
 </div></div></div>
 
 <section id="roles"><div class="wrap">
   <div class="center"><span class="pillk">👋 Для кого</span><h2 class="rv" style="margin-top:18px">Одно приложение — <span class="mark m-m">три роли</span></h2></div>
   <div class="cards">
-    <div class="rc c1 rv"><img class="av" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Woman%20student/Default/3D/woman_student_3d_default.png" alt=""><h3>Студент</h3><ul><li>Задачи из жизни по 10 минут</li><li>Подсказки ступенями, без ответа</li><li>Новая задача — проверка навыка</li><li>Личная ссылка — и он в Telegram</li></ul></div>
-    <div class="rc c2 rv"><img class="av" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Woman%20teacher/Default/3D/woman_teacher_3d_default.png" alt=""><h3>Преподаватель</h3><ul><li>Свой КТП — AI готовит черновики</li><li>Утверждает каждое задание</li><li>Видит, кто застрял и где</li><li>Задания со сроком и Excel</li></ul></div>
-    <div class="rc c3 rv"><img class="av" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Teacher/Default/3D/teacher_3d_default.png" alt=""><h3>Куратор</h3><ul><li>Вносит группу один раз</li><li>Следит за возрастом</li><li>Отмечает согласия родителей</li><li>Выдаёт личные ссылки и QR</li></ul></div>
+    <div class="rc c1 rv"><img class="av" src="img/woman_student_3d_default.png" alt=""><h3>Студент</h3><ul><li>Задачи из жизни по 10 минут</li><li>Подсказки ступенями, без ответа</li><li>Новая задача — проверка навыка</li><li>Личная ссылка — и он в Telegram</li></ul></div>
+    <div class="rc c2 rv"><img class="av" src="img/woman_teacher_3d_default.png" alt=""><h3>Преподаватель</h3><ul><li>Свой КТП — AI готовит черновики</li><li>Утверждает каждое задание</li><li>Видит, кто застрял и где</li><li>Задания со сроком и Excel</li></ul></div>
+    <div class="rc c3 rv"><img class="av" src="img/clipboard_3d.png" alt=""><h3>Куратор</h3><ul><li>Вносит группу один раз</li><li>Следит за возрастом</li><li>Отмечает согласия родителей</li><li>Выдаёт личные ссылки и QR</li></ul></div>
   </div>
 </div></section>
 
@@ -223,7 +223,7 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
     <div class="cl-msg" id="cmsg"></div>
   </div>
   <div class="stairs" id="stairs">
-    <img class="climber" id="climber" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Man%20student/Default/3D/man_student_3d_default.png" alt="">
+    <img class="climber" id="climber" src="img/man_student_3d_default.png" alt="">
     <div class="step s0" style="--i:0"><small>1</small>Намёк</div>
     <div class="step s1" style="--i:1"><small>2</small>Вопрос</div>
     <div class="step s2" style="--i:2"><small>3</small>Пример</div>
@@ -234,20 +234,20 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
 <section id="cab"><div class="wrap">
   <div class="center"><span class="pillk">📊 Кабинет</span><h2 class="rv" style="margin-top:18px">Всё видно — <span class="mark m-s">без проверки тетрадей</span></h2><p class="lead">Покликайте: это работает.</p></div>
   <div class="bento">
-    <div class="tile w4 rv"><h3><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Bar%20chart/3D/bar_chart_3d.png" alt="">Слабые темы группы</h3><p>Доля решивших шаг с первой попытки — ИС-21</p>
+    <div class="tile w4 rv"><h3><img src="img/bar_chart_3d.png" alt="">Слабые темы группы</h3><p>Доля решивших шаг с первой попытки — ИС-21</p>
       <div class="chart" id="chart"><div data-h="48"><span>48%</span></div><div data-h="63"><span>63%</span></div><div data-h="81"><span>81%</span></div><div data-h="92"><span>92%</span></div></div>
       <div class="chart-l"><span>Граница 1000</span><span>and / or</span><span>Циклы</span><span>Переменные</span></div></div>
-    <div class="tile w2 rv"><h3><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Speech%20balloon/3D/speech_balloon_3d.png" alt="">Нужна помощь</h3>
+    <div class="tile w2 rv"><h3><img src="img/speech_balloon_3d.png" alt="">Нужна помощь</h3>
       <div id="chat"><div class="bubble">Камила: «Почему 1000 не больше 1000?» 🤔</div><div class="bubble me">Сравни: 1000 &gt; 1000 или 1000 &gt;= 1000?</div><div class="bubble">Поняла! Спасибо 🙌</div></div></div>
-    <div class="tile w3 rv"><h3><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Teacher/Default/3D/teacher_3d_default.png" alt="">Список куратора</h3>
+    <div class="tile w3 rv"><h3><img src="img/teacher_3d_default.png" alt="">Список куратора</h3>
       <div class="rw"><div class="nm">Нургалиева Камила<small>16 лет</small></div><span class="tg w" id="ct">Ждём бланк</span><button class="mini" id="mk">Отметить</button></div>
       <div class="rw"><div class="nm">Сейткалиев Әлихан<small>18 лет</small></div><span class="tg ok">Вошёл</span></div>
       <div class="rw"><div class="nm">Абенова Диана<small>17 лет</small></div><span class="tg ok">Согласие · № 13</span></div></div>
-    <div class="tile w3 rv"><h3><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Puzzle%20piece/3D/puzzle_piece_3d.png" alt="">Тренажёр: двор у дома</h3><p>Забор 40 м. Какая ширина даёт максимум площади?</p>
+    <div class="tile w3 rv"><h3><img src="img/puzzle_piece_3d.png" alt="">Тренажёр: двор у дома</h3><p>Забор 40 м. Какая ширина даёт максимум площади?</p>
       <div class="yard"><input type="range" min="1" max="19" value="4" id="yard" aria-label="Ширина"><div class="yv" id="yv">64 м²</div></div><div class="ym" id="ym">Двигайте ползунок</div></div>
-    <div class="tile w3 rv"><h3><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Speech%20balloon/3D/speech_balloon_3d.png" alt="">РУС / ҚАЗ</h3><p>Интерфейс и уроки на двух языках.</p>
+    <div class="tile w3 rv"><h3><img src="img/speech_balloon_3d.png" alt="">РУС / ҚАЗ</h3><p>Интерфейс и уроки на двух языках.</p>
       <div class="lang" id="lang"><button class="on" data-l="ru">РУС</button><button data-l="kk">ҚАЗ</button></div><div class="ls" id="ls">Чек ровно на 1 000 ₸. Что сделает касса?</div></div>
-    <div class="tile w3 rv"><h3><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Spiral%20calendar/3D/spiral_calendar_3d.png" alt="">По вашему КТП</h3><p>Загрузите план занятий — AI готовит черновики задач, преподаватель утверждает. Студенты видят только утверждённое.</p></div>
+    <div class="tile w3 rv"><h3><img src="img/spiral_calendar_3d.png" alt="">По вашему КТП</h3><p>Загрузите план занятий — AI готовит черновики задач, преподаватель утверждает. Студенты видят только утверждённое.</p></div>
   </div>
 </div></section>
 
@@ -256,10 +256,10 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
   <h2 class="rv" style="margin-top:18px">Данные студентов — <span class="mark m-y" style="color:var(--ink)">в Казахстане</span></h2>
   <p class="lead rv" style="margin-top:14px">Колледж — оператор данных, мы — исполнитель по договору. За список студентов, возраст и согласия отвечает куратор.</p>
   <div class="sg">
-    <div class="sc2 rv"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Globe%20showing%20asia-australia/3D/globe_showing_asia-australia_3d.png" alt=""><h3>Серверы в РК</h3><p>База и резервные копии — в казахстанском дата-центре.</p></div>
-    <div class="sc2 rv"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Check%20mark%20button/3D/check_mark_button_3d.png" alt=""><h3>Согласия до урока</h3><p>18+ — в приложении. Младше 18 — бланк родителя и отметка куратора.</p></div>
-    <div class="sc2 rv"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Robot/3D/robot_3d.png" alt=""><h3>AI без личных данных</h3><p>В модель — только вопрос и материал урока. Без ФИО и Telegram ID.</p></div>
-    <div class="sc2 rv"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Locked/3D/locked_3d.png" alt=""><h3>Доступ по роли</h3><p>Студент видит своё, преподаватель — свою группу. HTTPS, журнал действий.</p></div>
+    <div class="sc2 rv"><img src="img/globe_showing_asia-australia_3d.png" alt=""><h3>Серверы в РК</h3><p>База и резервные копии — в казахстанском дата-центре.</p></div>
+    <div class="sc2 rv"><img src="img/check_mark_button_3d.png" alt=""><h3>Согласия до урока</h3><p>18+ — в приложении. Младше 18 — бланк родителя и отметка куратора.</p></div>
+    <div class="sc2 rv"><img src="img/robot_3d.png" alt=""><h3>AI без личных данных</h3><p>В модель — только вопрос и материал урока. Без ФИО и Telegram ID.</p></div>
+    <div class="sc2 rv"><img src="img/locked_3d.png" alt=""><h3>Доступ по роли</h3><p>Студент видит своё, преподаватель — свою группу. HTTPS, журнал действий.</p></div>
   </div>
 </div></section>
 
@@ -267,7 +267,7 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
   <div class="center"><span class="pillk">🚀 Как начать</span><h2 class="rv" style="margin-top:18px">Одна группа. <span class="mark m-v">Решение — по цифрам</span></h2></div>
   <div class="road" id="road">
     <svg id="rsvg" preserveAspectRatio="none"><path id="rpath" d=""/></svg>
-    <img class="rocket" id="rocket" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Rocket/3D/rocket_3d.png" alt="">
+    <img class="rocket" id="rocket" src="img/rocket_3d.png" alt="">
     <div class="rs">
       <div class="card"><span class="n" style="background:var(--sky)">1</span><small>30 МИНУТ</small><h3>Показ</h3><p>Урок и кабинет — на телефонах вашей команды.</p></div>
       <div class="card"><span class="n" style="background:var(--mint)">2</span><small>1 НЕДЕЛЯ</small><h3>ТЗ</h3><p>Анкета и карточки дисциплин. Шаблон и бланк согласия — от нас.</p></div>
@@ -275,11 +275,11 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
       <div class="card"><span class="n" style="background:var(--coral)">4</span><small>ИТОГ</small><h3>Решение</h3><p>Кто решает сам, сколько тем пройдено, сколько времени сэкономлено.</p></div>
     </div>
   </div>
-  <div class="free rv"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Check%20mark%20button/3D/check_mark_button_3d.png" alt="">Без долгосрочных обязательств — расширяем, только если пилот показал результат.</div>
+  <div class="free rv"><img src="img/check_mark_button_3d.png" alt="">Без долгосрочных обязательств — расширяем, только если пилот показал результат.</div>
 </div></section>
 
 <section id="demo" style="padding-top:20px"><div class="wrap">
-  <div class="demo rv"><img class="deco" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Mobile%20phone/3D/mobile_phone_3d.png" alt="">
+  <div class="demo rv"><img class="deco" src="img/mobile_phone_3d.png" alt="">
     <div><h2>Откройте демо <span class="mark m-y" style="color:var(--ink)">в телефоне</span></h2><p style="font-size:19px;margin-top:14px">Четыре дисциплины, РУС и ҚАЗ, кабинет преподавателя и куратора.</p></div>
     <div class="dl"><a class="btn b-y" href="https://t.me/tutornvl_bot?startapp=student">🎓 Глазами студента</a><a class="btn b-w" href="https://t.me/tutornvl_bot?startapp=teacher">👩‍🏫 Глазами преподавателя</a><a class="btn b-w" href="https://college-tutor.vercel.app/about.html">💻 В браузере</a></div>
   </div>
@@ -295,7 +295,7 @@ footer{padding:50px 0 60px;color:var(--muted);font-size:13px}footer .wrap{displa
 </div></section>
 
 <section class="cta" id="contact" style="padding-top:110px"><div class="wrap">
-  <div class="box rv"><img class="pp" src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Party%20popper/3D/party_popper_3d.png" alt="">
+  <div class="box rv"><img class="pp" src="img/party_popper_3d.png" alt="">
     <h2>Покажем за 30 минут</h2><p>На телефонах вашей команды. Ответим на вопросы по закону и безопасности и предложим формат пилота.</p>
     <div class="ctas" style="justify-content:center"><a class="btn b-v" href="#CONTACT_LINK">Записаться на показ →</a><a class="btn b-w" href="#demo">Сначала демо</a></div></div>
 </div></section>
@@ -324,7 +324,7 @@ const L=$('lesson'),H=['<b>Намёк:</b> скидка зависит толь�
 const tr=n=>`<div class="meta"><span>ШАГ ${Math.min(n+1,4)} ИЗ 4</span><span>${n}/4 ✓</span></div><div class="track">${[0,1,2,3].map(i=>`<i class="${i<n?'d':i===n?'c':''}"></i>`).join('')}</div>`;
 function s2(){h=0;L.innerHTML=tr(1)+`<b>Скидка — с 1 000 ₸. В коде кассы:</b><div class="code">if total &gt; 1000:<br>&nbsp;&nbsp;discount()</div><b>Чек ровно на 1 000 ₸. Что сделает касса?</b><button class="opt" data-a="0">Даст скидку</button><button class="opt" data-a="1">Не даст скидку</button><button class="opt" data-a="0">Выдаст ошибку</button><div class="fb" id="fb"></div><div id="hs"></div><button class="hbtn" id="hb">🙋 Нужна подсказка</button>`}
 function s3(){L.innerHTML=tr(2)+`<b>Почини условие, чтобы скидка была с 1 000 ₸:</b><div class="code">if total <span id="slot">__</span> 1000:</div><div class="chips"><button class="opt" data-b="0">&lt;</button><button class="opt" data-b="0">==</button><button class="opt" data-b="1">&gt;=</button></div><div class="fb" id="fb"></div>`}
-function fin(){L.innerHTML=tr(4)+`<div class="done"><img src="https://cdn.jsdelivr.net/gh/microsoft/fluentui-emoji@main/assets/Party%20popper/3D/party_popper_3d.png" alt=""><b style="font-family:Rubik;font-size:17px">Касса починена! +50 XP</b><div style="font-size:12px;color:#5f5a7a;margin-top:4px">Дальше — новая задача без подсказок.</div><button class="again" id="ag">Ещё раз</button></div>`;confetti();addXp(50)}
+function fin(){L.innerHTML=tr(4)+`<div class="done"><img src="img/party_popper_3d.png" alt=""><b style="font-family:Rubik;font-size:17px">Касса починена! +50 XP</b><div style="font-size:12px;color:#5f5a7a;margin-top:4px">Дальше — новая задача без подсказок.</div><button class="again" id="ag">Ещё раз</button></div>`;confetti();addXp(50)}
 L.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const fb=$('fb');
   if(b.dataset.a!==undefined){if(b.dataset.a==='1'){b.classList.add('ok');fb.className='fb g';fb.textContent='Верно! 1000 > 1000 — ложь. +20 XP';addXp(20);setTimeout(s3,1200)}else{b.classList.remove('bad');void b.offsetWidth;b.classList.add('bad');fb.className='fb b';fb.textContent='Не совсем. Возьми подсказку — ответ не дадим 😉'}}
   if(b.id==='hb'){if(h<3){$('hs').insertAdjacentHTML('beforeend',`<div class="hint">${H[h]}</div>`);h++}if(h>=3){b.disabled=true;b.textContent='Подсказки закончились — дальше сам 💪'}}
