@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Мой колледж — AI-тьютор для колледжа</title>
+<meta name="description" content="AI-тьютор колледжа в Telegram: задачи по вашей программе, подсказки вместо готовых ответов, кабинет преподавателя и куратора. Данные — в Казахстане.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06070b;--bg2:#0c0e15;--card:#10131c;--line:#1f2433;--ink:#eef0f7;--muted:#8b93a7;--violet:#8b5cf6;--cyan:#22d3ee;--lime:#c6f432;--pink:#f472b6;--grad:linear-gradient(100deg,#c6f432,#22d3ee 45%,#8b5cf6 80%)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:clip;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Onest,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+h1,h2,h3{margin:0;line-height:1.06;letter-spacing:-.025em}
+h1,h2{font-family:Unbounded,Onest,sans-serif;font-weight:600}
+h2{font-size:clamp(30px,4.2vw,54px)}
+.gt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:gs 8s ease-in-out infinite}
+@keyframes gs{50%{background-position:100% 0}}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--muted);max-width:640px}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.tagline{display:inline-flex;align-items:center;gap:10px;font:600 13px "JetBrains Mono",monospace;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.tagline i{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime);animation:pl 2s infinite}
+@keyframes pl{50%{opacity:.35}}
+section{padding:120px 0;position:relative}
+.center{text-align:center}.center .lead{margin:18px auto 0}
+/* Кнопки */
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:12px;padding:14px 22px;font:600 16px Onest,sans-serif;text-decoration:none;cursor:pointer;border:0;transition:transform .2s,box-shadow .3s,background .3s}
+.btn:hover{transform:translateY(-2px)}
+.b-glow{background:var(--ink);color:#06070b;box-shadow:0 0 0 1px #ffffff22,0 10px 40px #8b5cf655}.b-glow:hover{box-shadow:0 0 0 1px #fff,0 10px 50px #22d3ee66}
+.b-ghost{background:#ffffff08;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}.b-ghost:hover{background:#ffffff12}
+kbd{font:600 12px "JetBrains Mono",monospace;background:#ffffff12;border:1px solid #ffffff22;border-bottom-width:2px;border-radius:6px;padding:1px 6px;color:var(--muted)}
+/* Фон */
+.bgfx{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(600px circle at var(--mx,70%) var(--my,10%),#8b5cf622,transparent 60%)}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 50% 30%,#000 30%,transparent 75%);pointer-events:none}
+.aurora{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;pointer-events:none}
+.a1{width:520px;height:520px;background:#8b5cf6;top:-200px;left:-120px;animation:dr 16s ease-in-out infinite}
+.a2{width:460px;height:460px;background:#22d3ee;top:-80px;right:-160px;opacity:.35;animation:dr 20s ease-in-out infinite reverse}
+.a3{width:300px;height:300px;background:#c6f432;bottom:-120px;left:40%;opacity:.18;animation:dr 18s ease-in-out infinite}
+@keyframes dr{50%{transform:translate(60px,40px) scale(1.15)}}
+/* Шапка */
+.top{position:sticky;top:0;z-index:30;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.top.s{background:#06070bcc;backdrop-filter:blur(14px);border-color:var(--line)}
+.top .wrap{display:flex;align-items:center;gap:28px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font:600 17px Unbounded,sans-serif;text-decoration:none}
+.logo i{width:30px;height:30px;border-radius:9px;background:var(--grad);display:grid;place-items:center;color:#06070b;font-style:normal;font-weight:800}
+.top nav{margin-left:auto;display:flex;gap:26px;font-size:14px;color:var(--muted)}.top nav a{text-decoration:none}.top nav a:hover{color:var(--ink)}
+.top .btn{padding:9px 16px;font-size:14px}
+@media(max-width:900px){.top nav{display:none}.top .btn{margin-left:auto}}
+/* Hero */
+.hero{padding:70px 0 100px;overflow:hidden}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;background:#ffffff0a;border:1px solid var(--line);font-size:14px;color:var(--muted);text-decoration:none}
+.badge b{background:var(--grad);color:#06070b;border-radius:999px;padding:2px 10px;font-size:12px}
+.hero h1{font-size:clamp(40px,5.8vw,80px);margin:24px 0 22px}
+.hero .lead{margin-bottom:34px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.hint-k{font-size:13px;color:var(--muted);margin-left:6px}@media(hover:none){.hint-k{display:none}}
+.stats{display:flex;gap:34px;margin-top:46px;flex-wrap:wrap}
+.stats div{font-size:13px;color:var(--muted)}.stats b{display:block;font:600 30px Unbounded,sans-serif;color:var(--ink)}
+@media(max-width:960px){.hero .wrap{grid-template-columns:1fr}}
+/* Телефон */
+.ph-wrap{position:relative;justify-self:center;perspective:1200px}
+.ring{position:absolute;inset:-40px;border-radius:50%;border:1px dashed #ffffff1c;animation:spin 40s linear infinite}
+.ring::before{content:"";position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:var(--lime);box-shadow:0 0 16px var(--lime)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.phone{position:relative;width:300px;border-radius:44px;padding:10px;background:linear-gradient(160deg,#2a2f40,#0d0f16);box-shadow:0 0 0 1px #ffffff1a,0 40px 100px #8b5cf640,0 0 120px #22d3ee22;transform:rotateY(var(--ry,-10deg)) rotateX(var(--rx,4deg));transition:transform .2s}
+.screen{border-radius:34px;background:#0f1419;overflow:hidden;font-size:13.5px;color:#e4ebe6}
+.tgbar{display:flex;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #1f2a25;font-weight:700}.tgbar span{color:#7d8c84;font-weight:500;font-size:12px}
+.sc{padding:12px}
+.miss{border-radius:16px;padding:12px 14px;background:linear-gradient(135deg,#1f5e49,#14412f);border:1px solid #2b7a5f}.miss small{color:var(--lime);font:600 10px "JetBrains Mono",monospace;letter-spacing:.08em}.miss b{display:block;font-size:15px;margin-top:3px}
+.q{background:#151c21;border:1px solid #1f2a25;border-radius:16px;padding:12px;margin-top:10px;min-height:322px}
+.meta{display:flex;justify-content:space-between;font:600 10.5px "JetBrains Mono",monospace;color:#7d8c84}
+.track{display:flex;gap:4px;margin:7px 0 10px}.track i{flex:1;height:4px;border-radius:3px;background:#24302b;transition:background .4s}.track i.d{background:#5fae8a}.track i.c{background:var(--lime)}
+.code{font:12px "JetBrains Mono",monospace;background:#06070b;color:var(--lime);border:1px solid #1f2a25;border-radius:10px;padding:8px 10px;margin:7px 0 5px}
+.opt{display:block;width:100%;text-align:left;border:1px solid #26332d;border-radius:11px;padding:9px 11px;margin-top:7px;background:#11181c;font:500 13px Onest,sans-serif;color:#e4ebe6;cursor:pointer;transition:all .2s}
+.opt:hover{border-color:#5fae8a;background:#152019}.opt.ok{background:#1b3324;border-color:var(--lime);color:#fff}.opt.bad{background:#341a1a;border-color:#f87171;animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.chips{display:flex;gap:6px}.chips .opt{text-align:center;font-family:"JetBrains Mono",monospace}
+.fb{min-height:18px;margin-top:7px;font-size:12px;font-weight:600}.fb.g{color:var(--lime)}.fb.b{color:#f87171}
+.hint{margin-top:7px;background:#1b2a1f;color:#b9dcae;border-radius:10px;padding:8px 10px;font-size:12px;animation:in .3s}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.hbtn{margin-top:9px;width:100%;border:1px dashed #3c5146;background:none;border-radius:10px;padding:7px;font:600 12px Onest,sans-serif;color:#9fd8b8;cursor:pointer}.hbtn:disabled{opacity:.45}
+.done{text-align:center;padding-top:60px}.done .big{font-size:44px;animation:in .5s}.again{margin-top:10px;border:0;background:var(--lime);color:#06070b;border-radius:10px;padding:8px 16px;font:700 12px Onest;cursor:pointer}
+/* Бегущая строка */
+.mq{border-block:1px solid var(--line);padding:22px 0;overflow:hidden;background:var(--bg2)}
+.mq .tr{display:inline-flex;gap:60px;white-space:nowrap;animation:mq 40s linear infinite;font:500 15px "JetBrains Mono",monospace;color:var(--muted)}
+.mq span::before{content:"▸ ";color:var(--lime)}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* Чат с AI */
+.chat-sec .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+.win{border-radius:20px;background:var(--card);border:1px solid var(--line);overflow:hidden;box-shadow:0 30px 80px #0008}
+.win-bar{display:flex;gap:7px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);background:#0b0d14}
+.win-bar i{width:11px;height:11px;border-radius:50%;background:#2a2f3d}.win-bar i:nth-child(1){background:#f87171}.win-bar i:nth-child(2){background:#fbbf24}.win-bar i:nth-child(3){background:#34d399}
+.win-bar span{margin-left:10px;font:500 12px "JetBrains Mono",monospace;color:var(--muted)}
+.msgs{padding:20px;min-height:330px;display:flex;flex-direction:column;gap:12px}
+.m{max-width:82%;padding:12px 15px;border-radius:16px;font-size:15px;animation:in .35s}
+.m.u{align-self:flex-end;background:#1d2233;border:1px solid #2a3048;border-bottom-right-radius:4px}
+.m.a{align-self:flex-start;background:linear-gradient(135deg,#1a1630,#121a26);border:1px solid #3b2d6b;border-bottom-left-radius:4px}
+.m.a small{display:block;font:600 11px "JetBrains Mono",monospace;color:var(--violet);margin-bottom:4px}
+.typing::after{content:"▍";animation:pl .8s infinite;color:var(--cyan)}
+.asks{display:flex;gap:8px;flex-wrap:wrap;padding:0 20px 20px}
+.asks button{border:1px solid var(--line);background:#ffffff06;color:var(--ink);border-radius:999px;padding:9px 14px;font:500 14px Onest,sans-serif;cursor:pointer;transition:all .2s}
+.asks button:hover{border-color:var(--cyan);background:#22d3ee12}
+@media(max-width:960px){.chat-sec .wrap{grid-template-columns:1fr}}
+/* Бенто */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:56px}
+.bx{position:relative;border-radius:22px;padding:26px;background:var(--card);overflow:hidden;isolation:isolate}
+.bx::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:conic-gradient(from var(--a,0deg),#ffffff10,#8b5cf6aa,#22d3eeaa,#ffffff10 40%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;z-index:-1;animation:rot 6s linear infinite}
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes rot{to{--a:360deg}}
+.bx::after{content:"";position:absolute;inset:0;background:radial-gradient(300px circle at var(--x,50%) var(--y,0%),#ffffff0c,transparent 60%);z-index:-1;pointer-events:none}
+.bx h3{font:600 19px Onest,sans-serif;margin-bottom:6px}.bx p{margin:0;color:var(--muted);font-size:15px}
+.bx .ic{font:600 12px "JetBrains Mono",monospace;color:var(--lime);margin-bottom:12px;display:block}
+.s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}
+.bars{display:flex;align-items:flex-end;gap:10px;height:130px;margin-top:22px}
+.bars div{flex:1;border-radius:8px 8px 3px 3px;height:0;background:linear-gradient(180deg,var(--cyan),var(--violet));transition:height 1.2s cubic-bezier(.2,.9,.2,1);position:relative}
+.bars div:first-child{background:linear-gradient(180deg,#f87171,#7f1d1d)}
+.bars div span{position:absolute;top:-22px;width:100%;text-align:center;font:600 12px "JetBrains Mono",monospace;color:var(--ink)}
+.bl{display:flex;gap:10px;margin-top:8px;font:500 11px "JetBrains Mono",monospace;color:var(--muted)}.bl span{flex:1;text-align:center}
+.row{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:14px}.row .nm{flex:1}.row small{display:block;color:var(--muted);font-size:12px}
+.pill{font:600 11px "JetBrains Mono",monospace;border-radius:6px;padding:3px 8px;white-space:nowrap}.p-ok{background:#c6f43218;color:var(--lime)}.p-w{background:#f8717118;color:#f87171}
+.tog{width:40px;height:22px;border-radius:999px;background:#2a2f3d;border:0;position:relative;cursor:pointer;transition:background .3s;flex:none}
+.tog::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .3s}
+.tog.on{background:var(--lime)}.tog.on::after{left:21px}
+.yard{display:flex;gap:14px;align-items:center;margin-top:16px}.yard input{flex:1;accent-color:var(--cyan)}.yv{font:600 26px Unbounded;min-width:110px;text-align:right}
+.ym{font:500 13px "JetBrains Mono",monospace;color:var(--muted);margin-top:6px;min-height:20px}.ym.ok{color:var(--lime)}
+.seg{display:inline-flex;background:#ffffff08;border:1px solid var(--line);border-radius:10px;padding:3px;margin-top:14px}.seg button{border:0;background:none;border-radius:7px;padding:6px 14px;font:600 13px "JetBrains Mono";color:var(--muted);cursor:pointer}.seg button.on{background:var(--ink);color:#06070b}
+.lsx{margin-top:12px;font-size:16px;min-height:52px;transition:opacity .2s}
+@media(max-width:900px){.bento{grid-template-columns:1fr}.s2,.s3,.s4{grid-column:auto}}
+/* Терминал данных */
+.data .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.term{font:13.5px/1.9 "JetBrains Mono",monospace;padding:20px 22px;min-height:340px;color:#c9cfdd}
+.term .l{opacity:0;transition:opacity .3s}.term .l.on{opacity:1}
+.term .ok{color:var(--lime)}.term .c{color:var(--cyan)}.term .d{color:var(--muted)}.term .v{color:var(--violet)}
+.dl4{list-style:none;padding:0;margin:28px 0 0}.dl4 li{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:14px 0;border-top:1px solid var(--line)}
+.dl4 li::before{content:"✓";width:24px;height:24px;border-radius:7px;background:#c6f43218;color:var(--lime);display:grid;place-items:center;font-size:13px;font-weight:700}
+.dl4 b{display:block}.dl4 span{color:var(--muted);font-size:15px}
+@media(max-width:960px){.data .wrap{grid-template-columns:1fr}}
+/* Пилот */
+.tl{position:relative;max-width:760px;margin:60px auto 0;padding-left:46px}
+.tl::before{content:"";position:absolute;left:14px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl .fill{position:absolute;left:14px;top:6px;width:2px;height:0;background:var(--grad);box-shadow:0 0 14px #22d3ee}
+.tli{position:relative;padding:0 0 46px}
+.tli::before{content:"";position:absolute;left:-39px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--line);transition:all .4s}
+.tli.on::before{border-color:var(--lime);background:var(--lime);box-shadow:0 0 16px var(--lime)}
+.tli small{font:600 12px "JetBrains Mono",monospace;color:var(--cyan)}.tli h3{font:600 24px Onest;margin:4px 0 6px}.tli p{margin:0;color:var(--muted)}
+.ok-note{max-width:760px;margin:10px auto 0;padding:18px 22px;border-radius:16px;border:1px solid #c6f43244;background:#c6f4320a;color:#dfe9b9}
+/* Демо / FAQ / CTA */
+.demo{border-radius:28px;padding:56px;background:radial-gradient(600px circle at 90% 0%,#8b5cf633,transparent 60%),radial-gradient(500px circle at 0% 100%,#22d3ee22,transparent 60%),var(--card);border:1px solid var(--line);display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.links{display:grid;gap:12px}.links a{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-radius:14px;border:1px solid var(--line);background:#ffffff05;text-decoration:none;font-weight:600;transition:all .25s}
+.links a:hover{border-color:var(--cyan);transform:translateX(6px);background:#22d3ee0d}.links a span{font:500 13px "JetBrains Mono";color:var(--muted)}
+@media(max-width:900px){.demo{grid-template-columns:1fr;padding:32px 22px}}
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{cursor:pointer;list-style:none;font-weight:600;font-size:18px;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:"+";font:500 22px "JetBrains Mono";color:var(--cyan);transition:transform .3s}details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--muted);margin:10px 0 0;animation:in .3s}
+.cta{text-align:center;overflow:hidden}
+.cta h2{font-size:clamp(36px,5.4vw,72px)}
+.cta .lead{margin:20px auto 34px}
+footer{border-top:1px solid var(--line);padding:40px 0 50px;color:var(--muted);font-size:13px}footer .wrap{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}footer .fine{max-width:640px}
+.rv{opacity:0;transform:translateY(28px);filter:blur(6px);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1),filter .9s}.rv.in{opacity:1;transform:none;filter:none}
+.dock{position:fixed;left:12px;right:12px;bottom:12px;z-index:40;display:none;gap:8px;padding:8px;border-radius:16px;background:#10131ccc;backdrop-filter:blur(14px);border:1px solid var(--line);transform:translateY(150%);transition:transform .4s}.dock.show{transform:none}.dock a{flex:1;justify-content:center;padding:12px}
+@media(max-width:760px){.dock{display:flex}footer{padding-bottom:110px}section{padding:80px 0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none;filter:none}.term .l{opacity:1}}
+</style>
+</head>
+<body>
+<div class="bgfx" id="bgfx"></div>
+
+<header class="top" id="top"><div class="wrap">
+  <a class="logo" href="#"><i>↗</i>Мой колледж</a>
+  <nav><a href="#ai">AI-тьютор</a><a href="#features">Кабинет</a><a href="#data">Данные</a><a href="#pilot">Пилот</a><a href="#faq">FAQ</a></nav>
+  <a class="btn b-glow" href="#contact">Обсудить пилот</a>
+</div></header>
+
+<section class="hero"><div class="grid-bg"></div><div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div>
+<div class="wrap">
+  <div>
+    <a class="badge" href="#features"><b>NEW</b>Кабинет куратора: личные ссылки и QR →</a>
+    <h1>AI-тьютор, который <span class="gt">не решает за&nbsp;студента</span></h1>
+    <p class="lead">Учебное приложение колледжа прямо в Telegram. Задачи по вашей программе, подсказки вместо ответов, кабинет преподавателя — и данные студентов в Казахстане.</p>
+    <div class="ctas"><a class="btn b-glow" href="#ai">Спросить AI →</a><a class="btn b-ghost" href="#contact">Обсудить пилот</a><span class="hint-k">или нажмите <kbd>L</kbd> — урок</span></div>
+    <div class="stats"><div><b data-n="0">0</b>установок</div><div><b data-n="4">0</b>шага в уроке</div><div><b data-n="2">0</b>языка РУС/ҚАЗ</div><div><b>KZ</b>серверы</div></div>
+  </div>
+  <div class="ph-wrap" id="lessonArea"><div class="ring"></div>
+    <div class="phone" id="phone"><div class="screen">
+      <div class="tgbar">Мой колледж <span>mini app</span></div>
+      <div class="sc"><div class="miss"><small>PYTHON · ОСНОВЫ</small><b>Почини скидку в студенческом кафе</b></div><div class="q" id="lesson" aria-live="polite"></div></div>
+    </div></div>
+  </div>
+</div></section>
+
+<div class="mq" aria-hidden="true"><div class="tr">
+  <span>python</span><span>высшая математика</span><span>спецтехнологии</span><span>сервис</span><span>рус / қаз</span><span>telegram mini app</span><span>данные в РК</span><span>закон № 94-V</span>
+  <span>python</span><span>высшая математика</span><span>спецтехнологии</span><span>сервис</span><span>рус / қаз</span><span>telegram mini app</span><span>данные в РК</span><span>закон № 94-V</span>
+</div></div>
+
+<section class="chat-sec" id="ai"><div class="wrap">
+  <div>
+    <span class="tagline"><i></i>AI-тьютор</span>
+    <h2 class="rv" style="margin-top:18px">Попросите <span class="gt">решить за вас</span>. Не получится.</h2>
+    <p class="lead rv" style="margin-top:18px">Публичный чат-бот выдаёт готовый ответ за секунды. Наш тьютор отвечает только по материалам урока и выдаёт помощь ступенями: намёк → вопрос → пример. Решение — за студентом.</p>
+  </div>
+  <div class="win rv">
+    <div class="win-bar"><i></i><i></i><i></i><span>tutor · урок «Условия» · шаг 2</span></div>
+    <div class="msgs" id="msgs"><div class="m a"><small>AI-ТЬЮТОР</small>Привет! Застрял на скидке в кафе? Спрашивай — подскажу, как думать 🙂</div></div>
+    <div class="asks" id="asks"><button data-k="solve">Просто реши за меня</button><button data-k="hint">Дай подсказку</button><button data-k="why">Почему 1000 не больше 1000?</button><button data-k="off">Напиши сочинение по истории</button></div>
+  </div>
+</div></section>
+
+<section id="features" style="padding-top:40px"><div class="wrap">
+  <div class="center"><span class="tagline"><i></i>Кабинет</span><h2 class="rv" style="margin-top:18px">Преподаватель видит <span class="gt">каждого</span></h2><p class="lead rv">Это живые блоки — нажимайте.</p></div>
+  <div class="bento">
+    <div class="bx s4 rv"><span class="ic">// слабые темы · ИС-21</span><h3>Где группа ошибается</h3><p>Доля решивших шаг с первой попытки.</p>
+      <div class="bars" id="bars"><div data-h="48"><span>48%</span></div><div data-h="63"><span>63%</span></div><div data-h="81"><span>81%</span></div><div data-h="92"><span>92%</span></div></div>
+      <div class="bl"><span>граница 1000</span><span>and / or</span><span>циклы</span><span>переменные</span></div></div>
+    <div class="bx s2 rv"><span class="ic">// застряли</span><h3>3 студента</h3><p>Две ошибки подряд или много подсказок — сразу в кабинете.</p>
+      <div class="row"><div class="nm">Камила Н.<small>шаг 2 · 4 подсказки</small></div><span class="pill p-w">!</span></div>
+      <div class="row"><div class="nm">Тимур К.<small>шаг 3 · 2 ошибки</small></div><span class="pill p-w">!</span></div></div>
+    <div class="bx s3 rv"><span class="ic">// куратор · согласия</span><h3>Список группы</h3><p>Куратор отмечает бланк родителя — включается сохранение.</p>
+      <div class="row"><div class="nm">Нургалиева Камила<small>16 лет</small></div><span class="pill p-w" id="cs">ждём бланк</span><button class="tog" id="tog" aria-label="Согласие родителя получено"></button></div>
+      <div class="row"><div class="nm">Абенова Диана<small>17 лет</small></div><span class="pill p-ok">согласие · №13</span><button class="tog on" aria-label="Согласие получено" disabled></button></div>
+      <div class="row"><div class="nm">Сейткалиев Әлихан<small>18 лет</small></div><span class="pill p-ok">18+</span></div></div>
+    <div class="bx s3 rv"><span class="ic">// тренажёр · математика</span><h3>Двор у дома</h3><p>Забор 40 м. Какая ширина даёт максимум площади?</p>
+      <div class="yard"><input type="range" min="1" max="19" value="4" id="yard" aria-label="Ширина"><div class="yv" id="yv">64 м²</div></div><div class="ym" id="ym">// двигайте ползунок</div></div>
+    <div class="bx s2 rv"><span class="ic">// i18n</span><h3>РУС / ҚАЗ</h3>
+      <div class="seg" id="seg"><button class="on" data-l="ru">РУС</button><button data-l="kk">ҚАЗ</button></div><div class="lsx" id="lsx">Чек ровно на 1 000 ₸. Что сделает касса?</div></div>
+    <div class="bx s2 rv"><span class="ic">// ктп → черновики</span><h3>По вашему плану</h3><p>Загрузите КТП — AI готовит черновики, преподаватель утверждает. Студенты видят только утверждённое.</p></div>
+    <div class="bx s2 rv"><span class="ic">// telegram</span><h3>Ноль установок</h3><p>Личная ссылка от куратора — и студент в уроке. Без паролей и регистраций.</p></div>
+  </div>
+</div></section>
+
+<section class="data" id="data"><div class="wrap">
+  <div>
+    <span class="tagline"><i></i>Данные и закон</span>
+    <h2 class="rv" style="margin-top:18px">Данные — <span class="gt">в Казахстане</span>. Ответственность — по ролям.</h2>
+    <ul class="dl4">
+      <li><div><b>Серверы и бэкапы в РК</b><span>Закон РК № 94-V, ст. 12 — локализация баз данных.</span></div></li>
+      <li><div><b>Куратор отвечает за список</b><span>Вносит студентов, видит возраст, отмечает бланки родителей.</span></div></li>
+      <li><div><b>AI без личных данных</b><span>В модель — только вопрос и материал урока.</span></div></li>
+      <li><div><b>Колледж — оператор, мы — исполнитель</b><span>Хранение, сроки и удаление — в договоре.</span></div></li>
+    </ul>
+  </div>
+  <div class="win rv" id="termwin"><div class="win-bar"><i></i><i></i><i></i><span>privacy-check · college-tutor</span></div>
+    <div class="term" id="term">
+      <div class="l"><span class="d">$</span> tutor check --privacy</div>
+      <div class="l"><span class="ok">✓</span> region ............ <span class="c">kz</span> <span class="d">(дата-центр в РК)</span></div>
+      <div class="l"><span class="ok">✓</span> backups ........... <span class="c">kz</span> <span class="d">(зашифрованы)</span></div>
+      <div class="l"><span class="ok">✓</span> student.name → AI .. <span class="v">blocked</span></div>
+      <div class="l"><span class="ok">✓</span> telegram_id → AI ... <span class="v">blocked</span></div>
+      <div class="l"><span class="ok">✓</span> minor &lt; 18 ......... <span class="c">parent consent</span> <span class="d">(отметка куратора)</span></div>
+      <div class="l"><span class="ok">✓</span> student edits name .. <span class="v">denied</span></div>
+      <div class="l"><span class="ok">✓</span> access ............ <span class="c">role-based</span> <span class="d">(студент · преподаватель · куратор)</span></div>
+      <div class="l"><span class="d">— all checks passed</span> <span class="ok">8/8</span></div>
+    </div></div>
+</div></section>
+
+<section id="pilot"><div class="wrap">
+  <div class="center"><span class="tagline"><i></i>Как начать</span><h2 class="rv" style="margin-top:18px">Одна группа. <span class="gt">Решение — по цифрам</span></h2></div>
+  <div class="tl" id="tl"><div class="fill" id="tlf"></div>
+    <div class="tli"><small>01 · 30 минут</small><h3>Показ</h3><p>Урок и кабинет — на телефонах вашей команды.</p></div>
+    <div class="tli"><small>02 · 1 неделя</small><h3>ТЗ</h3><p>Анкета и карточки дисциплин. Шаблон ТЗ и бланк согласия — от нас.</p></div>
+    <div class="tli"><small>03 · 4–6 недель</small><h3>Пилот</h3><p>1–2 группы, ваши темы. Преподаватель утверждает, мы сопровождаем.</p></div>
+    <div class="tli"><small>04 · итог</small><h3>Решение</h3><p>Кто решает новые задачи сам, сколько тем пройдено, сколько времени сэкономлено.</p></div>
+  </div>
+  <div class="ok-note rv">✓ Без долгосрочных обязательств — расширяем, только если пилот показал результат.</div>
+</div></section>
+
+<section id="demo" style="padding-top:0"><div class="wrap">
+  <div class="demo rv"><div><span class="tagline"><i></i>Live demo</span><h2 style="margin-top:16px">Откройте <span class="gt">в телефоне</span></h2><p class="lead" style="margin-top:14px">Четыре дисциплины, РУС и ҚАЗ, кабинеты преподавателя и куратора.</p></div>
+    <div class="links"><a href="https://t.me/tutornvl_bot?startapp=student">Глазами студента <span>telegram ↗</span></a><a href="https://t.me/tutornvl_bot?startapp=teacher">Глазами преподавателя <span>telegram ↗</span></a><a href="https://college-tutor.vercel.app/about.html">В браузере <span>web ↗</span></a></div></div>
+</div></section>
+
+<section id="faq" style="padding-top:0"><div class="wrap" style="max-width:860px">
+  <div class="center"><span class="tagline"><i></i>FAQ</span><h2 class="rv" style="margin:18px 0 20px">Частые вопросы</h2></div>
+  <details><summary>Нужно ли что-то устанавливать?</summary><p>Нет. Приложение открывается в Telegram и в браузере. Студенту нужна только личная ссылка от куратора.</p></details>
+  <details><summary>Кто вносит данные студентов и следит за возрастом?</summary><p>Куратор группы: вносит список, видит, кому меньше 18, собирает бланки родителей и ставит отметку. Студент свои данные не вводит и не меняет.</p></details>
+  <details><summary>Кто готовит задания?</summary><p>AI готовит черновики по вашему плану занятий, преподаватель утверждает. Студенты видят только утверждённое.</p></details>
+  <details><summary>А если AI ошибётся?</summary><p>Тьютор отвечает только по утверждённым материалам урока. Нет ответа — предлагает обратиться к преподавателю.</p></details>
+  <details><summary>Сколько это стоит?</summary><p>Зависит от числа групп и дисциплин. После показа и ТЗ готовим предложение.</p></details>
+</div></section>
+
+<section class="cta" id="contact"><div class="aurora a1" style="top:auto;bottom:-260px;left:10%"></div><div class="aurora a2" style="top:auto;bottom:-240px"></div><div class="wrap" style="position:relative">
+  <span class="tagline"><i></i>Следующий шаг</span>
+  <h2 class="rv" style="margin-top:18px">Покажем за <span class="gt">30 минут</span></h2>
+  <p class="lead rv">На телефонах вашей команды. Ответим на вопросы по закону и безопасности и предложим формат пилота.</p>
+  <div class="ctas" style="justify-content:center"><a class="btn b-glow" href="#CONTACT_LINK">Записаться на показ →</a><a class="btn b-ghost" href="#demo">Сначала демо</a></div>
+</div></section>
+
+<nav class="dock" id="dock"><a class="btn b-ghost" href="#lessonArea">Урок</a><a class="btn b-glow" href="#contact">Пилот</a></nav>
+<footer><div class="wrap"><div><b>Мой колледж</b> — учебные приложения для колледжей в Telegram<br>ТОО «Neurovia Labs», Казахстан</div><div class="fine">Сведения о законодательстве РК даны в общем виде и не являются юридической консультацией: условия хранения и обработки данных фиксируются в договоре с колледжем.</div></div></footer>
+
+<script>
+(()=>{'use strict';
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;const $=id=>document.getElementById(id);
+const top=$('top'),dock=$('dock'),bg=$('bgfx'),ph=$('phone');
+addEventListener('scroll',()=>{const y=scrollY;top.classList.toggle('s',y>10);dock.classList.toggle('show',y>innerHeight*.8)},{passive:true});
+addEventListener('pointermove',e=>{bg.style.setProperty('--mx',e.clientX+'px');bg.style.setProperty('--my',e.clientY+'px')},{passive:true});
+if(!RM&&matchMedia('(hover:hover)').matches){const area=$('lessonArea');document.querySelector('.hero').addEventListener('pointermove',e=>{const r=area.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;ph.style.setProperty('--ry',(x*18)+'deg');ph.style.setProperty('--rx',(-y*12)+'deg')})}
+document.querySelectorAll('.bx').forEach(b=>b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.setProperty('--x',(e.clientX-r.left)+'px');b.style.setProperty('--y',(e.clientY-r.top)+'px')}));
+addEventListener('keydown',e=>{if((e.key==='l'||e.key==='д')&&!e.target.closest('input,textarea')){$('lessonArea').scrollIntoView({behavior:'smooth',block:'center'})}});
+function count(el){const to=+el.dataset.n;if(RM||!to){el.textContent=to;return}const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/1000);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)}
+document.querySelectorAll('[data-n]').forEach(count);
+document.querySelectorAll('.bx,.tli').forEach((el,i)=>{el.classList.add('rv');el.style.transitionDelay=(i%3*100)+'ms'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+const once=(el,cb,th=.35)=>new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){o.disconnect();cb()}}),{threshold:th}).observe(el);
+// Урок
+const L=$('lesson'),H=['<b>Намёк:</b> скидка зависит только от одного числа в чеке.','<b>Вопрос:</b> верно ли, что 1000 &gt; 1000?','<b>Пример:</b> «с 18 лет» пишут <code>age &gt;= 18</code>.'];let h=0;
+const tr=n=>`<div class="meta"><span>STEP ${Math.min(n+1,4)}/4</span><span>${n}/4 done</span></div><div class="track">${[0,1,2,3].map(i=>`<i class="${i<n?'d':i===n?'c':''}"></i>`).join('')}</div>`;
+function s2(){h=0;L.innerHTML=tr(1)+`<b>Скидка — с 1 000 ₸. В коде кассы:</b><div class="code">if total &gt; 1000:<br>&nbsp;&nbsp;discount()</div><b>Чек ровно на 1 000 ₸. Что сделает касса?</b><button class="opt" data-a="0">Даст скидку</button><button class="opt" data-a="1">Не даст скидку</button><button class="opt" data-a="0">Выдаст ошибку</button><div class="fb" id="fb"></div><div id="hs"></div><button class="hbtn" id="hb">Нужна подсказка</button>`}
+function s3(){L.innerHTML=tr(2)+`<b>Почини условие, чтобы скидка была с 1 000 ₸:</b><div class="code">if total <span id="slot">__</span> 1000:</div><div class="chips"><button class="opt" data-b="0">&lt;</button><button class="opt" data-b="0">==</button><button class="opt" data-b="1">&gt;=</button></div><div class="fb" id="fb"></div>`}
+function fin(){L.innerHTML=tr(4)+`<div class="done"><div class="big">⚡</div><b>Касса починена!</b><div style="font-size:12px;color:#7d8c84;margin-top:4px">Дальше — новая задача без подсказок.</div><button class="again" id="ag">Ещё раз</button></div>`}
+L.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const fb=$('fb');
+  if(b.dataset.a!==undefined){if(b.dataset.a==='1'){b.classList.add('ok');fb.className='fb g';fb.textContent='Верно! 1000 > 1000 — ложь.';setTimeout(s3,1100)}else{b.classList.remove('bad');void b.offsetWidth;b.classList.add('bad');fb.className='fb b';fb.textContent='Не совсем. Возьми подсказку — ответ не дадим.'}}
+  if(b.id==='hb'){if(h<3){$('hs').insertAdjacentHTML('beforeend',`<div class="hint">${H[h]}</div>`);h++}if(h>=3){b.disabled=true;b.textContent='Подсказки закончились — дальше сам'}}
+  if(b.dataset.b!==undefined){if(b.dataset.b==='1'){b.classList.add('ok');$('slot').textContent='>=';fb.className='fb g';fb.textContent='Скидка работает ✓';setTimeout(fin,900)}else{b.classList.remove('bad');void b.offsetWidth;b.classList.add('bad');fb.className='fb b';fb.textContent='Проверь чек на 1 000 ₸ ещё раз.'}}
+  if(b.id==='ag')s2()});
+s2();
+// Чат с AI
+const msgs=$('msgs'),asks=$('asks');let busy=false,hl=0;
+const Q={solve:'Просто реши за меня',hint:'Дай подсказку',why:'Почему 1000 не больше 1000?',off:'Напиши сочинение по истории'};
+const HL=['Скидка зависит только от одного числа в чеке. От какого?','Наводящий вопрос: верно ли, что 1000 > 1000? А 1000 >= 1000?','Похожий пример: «с 18 лет» в коде пишут age >= 18. Видишь связь со скидкой?','Подсказки закончились 🙂 Попробуй сам — а если не выйдет, нажми «Нужна помощь», преподаватель увидит.'];
+const A={solve:()=>'Готовое решение не дам — так навык не появится 🙂 Давай по шагам: от какого числа в чеке зависит скидка?',hint:()=>HL[Math.min(hl++,3)],why:()=>'Хороший вопрос! «>» — строго больше. 1000 не больше самой себя, они равны. Какой знак включает равенство?',off:()=>'Я отвечаю только по материалам этого урока. По другим предметам — к преподавателю 👩‍🏫'};
+function type(el,text){return new Promise(r=>{if(RM){el.textContent=text;r();return}let i=0;el.classList.add('typing');(function f(){el.textContent=text.slice(0,++i);msgs.scrollTop=msgs.scrollHeight;if(i<text.length)setTimeout(f,14);else{el.classList.remove('typing');r()}})()})}
+asks.addEventListener('click',async e=>{const b=e.target.closest('button');if(!b||busy)return;busy=true;const k=b.dataset.k;
+  msgs.insertAdjacentHTML('beforeend',`<div class="m u">${Q[k]}</div>`);
+  const m=document.createElement('div');m.className='m a';m.innerHTML='<small>AI-ТЬЮТОР</small><span></span>';await new Promise(r=>setTimeout(r,450));msgs.appendChild(m);
+  await type(m.querySelector('span'),A[k]());
+  while(msgs.children.length>7)msgs.firstElementChild.remove();busy=false});
+// Бенто
+once($('bars'),()=>document.querySelectorAll('#bars div').forEach((d,i)=>setTimeout(()=>d.style.height=d.dataset.h+'%',RM?0:i*140)));
+$('tog').onclick=e=>{const t=e.currentTarget,on=t.classList.toggle('on'),s=$('cs');s.className='pill '+(on?'p-ok':'p-w');s.textContent=on?'согласие · №7':'ждём бланк'};
+const yi=$('yard');function yard(){const x=+yi.value;$('yv').textContent=x*(20-x)+' м²';const m=$('ym');m.className='ym'+(x===10?' ok':'');m.textContent=x===10?'// максимум: 10 × 10, производная = 0 ✓':`// ${x} × ${20-x} м`}yi.oninput=yard;yard();
+const LS={ru:'Чек ровно на 1 000 ₸. Что сделает касса?',kk:'Чек дәл 1 000 ₸. Касса не істейді?'};
+$('seg').onclick=e=>{const b=e.target.closest('[data-l]');if(!b)return;document.querySelectorAll('#seg button').forEach(x=>x.classList.toggle('on',x===b));const t=$('lsx');t.style.opacity=0;setTimeout(()=>{t.textContent=LS[b.dataset.l];t.style.opacity=1},180)};
+// Терминал
+once($('termwin'),()=>document.querySelectorAll('#term .l').forEach((l,i)=>setTimeout(()=>l.classList.add('on'),RM?0:200+i*260)));
+// Таймлайн
+const tl=$('tl'),tlf=$('tlf'),tis=[...document.querySelectorAll('.tli')];
+function tlUpd(){const r=tl.getBoundingClientRect();const k=Math.min(1,Math.max(0,(innerHeight*.6-r.top)/r.height));tlf.style.height=(k*(r.height-12))+'px';tis.forEach(t=>{const tr=t.getBoundingClientRect();t.classList.toggle('on',RM||tr.top<innerHeight*.6)})}
+addEventListener('scroll',tlUpd,{passive:true});tlUpd();
+})();
+</script>
+</body>
+</html>
